@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ru" class="no-js">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сибиряк | Отдых в Красноярке</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <style>
         /* Badge styling for "Популярный выбор" and "Премиум" */
@@ -22,28 +22,47 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
             z-index: 10;
-            transition: transform 0.3s ease, filter 0.3s ease;
         }
-        .room-card__badge:where([data-badge="popular"]) {
+        .room-card__badge[data-badge="popular"] {
             background: linear-gradient(135deg, #28a745 0%, #218838 100%);
         }
-        .room-card__badge:where([data-badge="premium"]) {
+        .room-card__badge[data-badge="premium"] {
             background: linear-gradient(135deg, #d4a017 0%, #b8860b 100%);
         }
-        .room-card__badge:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1);
+        
+        /* Упрощенные стили для иконок */
+        .icon-placeholder {
+            width: 60px;
+            height: 60px;
+            background: rgba(193, 154, 107, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: var(--primary);
         }
-        @media (max-width: 768px) {
-            .room-card__badge {
-                font-size: 0.85em;
-                padding: 8px 12px;
-                top: 10px;
-                right: 10px;
-            }
+        
+        /* Упрощенный параллакс */
+        .experience {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            padding: 100px 0;
+            color: white;
+            position: relative;
+        }
+        
+        .experience-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
     </style>
-    <script>document.documentElement.classList.remove('no-js');</script>
 </head>
 <body>
     <!-- Preloader -->
@@ -61,12 +80,12 @@
     <header class="header">
         <div class="container">
             <div class="header__inner">
-                <a href="index.html" class="logo" data-aos="fade-down">
+                <a href="index.html" class="logo">
                     <span class="logo__text">Дом отдыха</span>
                     <span class="logo__text">Сибиряк</span>
                 </a>
                 
-                <nav class="nav" data-aos="fade-down" data-aos-delay="200">
+                <nav class="nav">
                     <ul class="nav__list">
                         <li class="nav__item"><a href="index.html" class="nav__link active">Главная</a></li>
                         <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
@@ -76,7 +95,7 @@
                     </ul>
                 </nav>
                 
-                <div class="header__contacts" data-aos="fade-down" data-aos-delay="400">
+                <div class="header__contacts">
                     <div class="contact-links">
                         <a href="tel:+79083103616" class="phone">8 908 310 36 16</a>
                         <a href="mailto:matvey.matveev.87@list.ru" class="email">matvey.matveev.87@list.ru</a>
@@ -92,22 +111,20 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero__slider">
-            <div class="hero__slide" style="background-image: url('img/sibiryak-hero.jpg')">
-                <div class="container">
-                    <div class="hero__content">
-                        <h1 class="hero__title" data-aos="fade-up" data-aos-delay="400">
-                            <span class="hero__title-line">Отдых в сосновом лесу</span>
-                            <span class="hero__title-line">на берегу Иртыша</span>
-                        </h1>
-                        <a href="https://wa.me/89083103616" class="btn btn--primary" data-aos="fade-up" data-aos-delay="800">
-                            <span>Забронировать</span>
-                            <svg width="13px" height="10px" viewBox="0 0 13 10">
-                                <path d="M1,5 L11,5"></path>
-                                <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
-                        </a>
-                    </div>
+        <div class="hero__slide" style="background-image: url('img/sibiryak-hero.jpg')">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">
+                        <span class="hero__title-line">Отдых в сосновом лесу</span>
+                        <span class="hero__title-line">на берегу Иртыша</span>
+                    </h1>
+                    <a href="https://wa.me/89083103616" class="btn btn--primary">
+                        <span>Забронировать</span>
+                        <svg width="13px" height="10px" viewBox="0 0 13 10">
+                            <path d="M1,5 L11,5"></path>
+                            <polyline points="8 1 12 5 8 9"></polyline>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -116,20 +133,6 @@
             <div class="hero__scroll-text">Листайте вниз</div>
             <div class="hero__scroll-line"></div>
         </div>
-        
-        <div class="hero__social">
-            <ul class="social-list">
-                <li class="social-list__item" data-aos="fade-left" data-aos-delay="200">
-                    <a href="#" class="social-list__link">Instagram</a>
-                </li>
-                <li class="social-list__item" data-aos="fade-left" data-aos-delay="400">
-                    <a href="#" class="social-list__link">Facebook</a>
-                </li>
-                <li class="social-list__item" data-aos="fade-left" data-aos-delay="600">
-                    <a href="#" class="social-list__link">YouTube</a>
-                </li>
-            </ul>
-        </div>
     </section>
 
     <!-- About -->
@@ -137,28 +140,24 @@
         <div class="container">
             <div class="about__inner">
                 <div class="about__content">
-                    <h2 class="section__title" data-aos="fade-up">
+                    <h2 class="section__title">
                         <span class="section__title-sub">О нашем</span>
                         <span class="section__title-main">Доме отдыха</span>
                     </h2>
                     
-                    <div class="about__text" data-aos="fade-up" data-aos-delay="200">
+                    <div class="about__text">
                         <p>Дом отдыха Сибиряк — это идеальное место для тех, кто ценит комфорт, уединение и первозданную природу. Расположенный в курортном посёлке Красноярка, Омская область, наш курорт находится в сосновом бору на берегу реки Иртыш.</p>
                     </div>
                     
                     <div class="about__features">
-                        <div class="about__feature" data-aos="fade-up" data-aos-delay="300">
-                            <div class="about__feature-icon">
-                                <img src="img/icons/room-standard.svg" alt="Номера">
-                            </div>
+                        <div class="about__feature">
+                            <div class="icon-placeholder">🏠</div>
                             <h3 class="about__feature-title">Комфортные номера</h3>
                             <p class="about__feature-text">От стандарта до люкса, для 2-3 гостей</p>
                         </div>
                         
-                        <div class="about__feature" data-aos="fade-up" data-aos-delay="400">
-                            <div class="about__feature-icon">
-                                <img src="img/icons/nature.svg" alt="Природа">
-                            </div>
+                        <div class="about__feature">
+                            <div class="icon-placeholder">🌲</div>
                             <h3 class="about__feature-title">Природа</h3>
                             <p class="about__feature-text">Сосновый бор и река Иртыш</p>
                         </div>
@@ -166,8 +165,8 @@
                 </div>
                 
                 <div class="about__media">
-                    <div class="about__image" data-aos="fade-left">
-                        <img src="img/sibiryak-hero.jpgs" alt="О доме отдыха" class="about__image-main">
+                    <div class="about__image">
+                        <img src="img/about-image.jpg" alt="О доме отдыха" class="about__image-main">
                         <div class="about__image-decor"></div>
                     </div>
                 </div>
@@ -178,80 +177,64 @@
     <!-- Rooms -->
     <section class="section rooms">
         <div class="container">
-            <h2 class="section__title" data-aos="fade-up">
+            <h2 class="section__title">
                 <span class="section__title-sub">Наши</span>
                 <span class="section__title-main">Номера</span>
             </h2>
             
-            <div class="rooms__slider">
-                <div class="rooms__slide" data-aos="fade-up">
-                    <div class="room-card">
-                        <div class="room-card__media">
-                            <div class="room-card__image" style="background-image: url('/img/sibiryak-hero.jpg')"></div>
-                            <div class="room-card__badge" data-badge="popular">Популярный выбор</div>
+            <div class="rooms__grid">
+                <div class="room-card">
+                    <div class="room-card__media">
+                        <img src="img/room-standard.jpg" alt="3-местный Стандарт" class="room-card__image">
+                        <div class="room-card__badge" data-badge="popular">Популярный выбор</div>
+                    </div>
+                    
+                    <div class="room-card__content">
+                        <h3 class="room-card__title">3-местный Стандарт</h3>
+                        <p class="room-card__text">Уютный номер для трех гостей с необходимыми удобствами</p>
+                        
+                        <div class="room-card__meta">
+                            <div class="room-card__meta-item">🛏️ 3 кровати</div>
+                            <div class="room-card__meta-item">👥 до 3 гостей</div>
                         </div>
                         
-                        <div class="room-card__content">
-                            <h3 class="room-card__title">3-местный Стандарт</h3>
-                            <p class="room-card__text">Уютный номер для трех гостей с необходимыми удобствами</p>
-                            
-                            <div class="room-card__meta">
-                                <div class="room-card__meta-item">
-                                    <img src="img/icons/bed.svg" alt="Кровати">
-                                    <span>3 кровати</span>
-                                </div>
-                                <div class="room-card__meta-item">
-                                    <img src="img/icons/guest.svg" alt="Гости">
-                                    <span>до 3</span>
-                                </div>
-                            </div>
-                            
-                            <div class="room-card__footer">
-                                <div class="room-card__price">от 1000 ₽/сутки с человека</div>
-                                <a href="services.html" class="room-card__link">
-                                    <span>Подробнее</span>
-                                    <svg width="13px" height="10px" viewBox="0 0 13 10">
-                                        <path d="M1,5 L11,5"></path>
-                                        <polyline points="8 1 12 5 8 9"></polyline>
-                                    </svg>
-                                </a>
-                            </div>
+                        <div class="room-card__footer">
+                            <div class="room-card__price">от 1000 ₽/сутки с человека</div>
+                            <a href="services.html" class="room-card__link">
+                                <span>Подробнее</span>
+                                <svg width="13px" height="10px" viewBox="0 0 13 10">
+                                    <path d="M1,5 L11,5"></path>
+                                    <polyline points="8 1 12 5 8 9"></polyline>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="rooms__slide" data-aos="fade-up" data-aos-delay="100">
-                    <div class="room-card">
-                        <div class="room-card__media">
-                            <div class="room-card__image" style="background-image: url('img/room-luxury.jpg')"></div>
-                            <div class="room-card__badge" data-badge="premium">Премиум</div>
+                <div class="room-card">
+                    <div class="room-card__media">
+                        <img src="img/room-luxury.jpg" alt="2-комнатный Люкс" class="room-card__image">
+                        <div class="room-card__badge" data-badge="premium">Премиум</div>
+                    </div>
+                    
+                    <div class="room-card__content">
+                        <h3 class="room-card__title">2-комнатный Люкс</h3>
+                        <p class="room-card__text">Роскошный номер для романтического отдыха</p>
+                        
+                        <div class="room-card__meta">
+                            <div class="room-card__meta-item">🛏️ Двуспальная кровать</div>
+                            <div class="room-card__meta-item">👥 до 2 гостей</div>
                         </div>
                         
-                        <div class="room-card__content">
-                            <h3 class="room-card__title">2-комнатный Люкс</h3>
-                            <p class="room-card__text">Роскошный номер для романтического отдыха</p>
-                            
-                            <div class="room-card__meta">
-                                <div class="room-card__meta-item">
-                                    <img src="img/icons/bed.svg" alt="Кровать">
-                                    <span>Двуспальная кровать</span>
-                                </div>
-                                <div class="room-card__meta-item">
-                                    <img src="img/icons/guest.svg" alt="Гости">
-                                    <span>до 2</span>
-                                </div>
-                            </div>
-                            
-                            <div class="room-card__footer">
-                                <div class="room-card__price">от 1300 ₽/сутки с человека</div>
-                                <a href="services.html" class="room-card__link">
-                                    <span>Подробнее</span>
-                                    <svg width="13px" height="10px" viewBox="0 0 13 10">
-                                        <path d="M1,5 L11,5"></path>
-                                        <polyline points="8 1 12 5 8 9"></polyline>
-                                    </svg>
-                                </a>
-                            </div>
+                        <div class="room-card__footer">
+                            <div class="room-card__price">от 1300 ₽/сутки с человека</div>
+                            <a href="services.html" class="room-card__link">
+                                <span>Подробнее</span>
+                                <svg width="13px" height="10px" viewBox="0 0 13 10">
+                                    <path d="M1,5 L11,5"></path>
+                                    <polyline points="8 1 12 5 8 9"></polyline>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -260,37 +243,31 @@
     </section>
 
     <!-- Experience -->
-    <section class="section experience">
-        <div class="experience__parallax" data-parallax="scroll" data-image-src="img/irtysh-bg.jpg"></div>
+    <section class="experience">
+        <div class="experience-bg" style="background-image: url('img/irtysh-bg.jpg')"></div>
         
         <div class="container">
             <div class="experience__inner">
-                <h2 class="section__title" data-aos="fade-up">
+                <h2 class="section__title">
                     <span class="section__title-sub">Уникальный</span>
                     <span class="section__title-main">Опыт</span>
                 </h2>
                 
                 <div class="experience__content">
-                    <div class="experience__item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="experience__icon">
-                            <img src="img/icons/gazebo.svg" alt="Беседки">
-                        </div>
+                    <div class="experience__item">
+                        <div class="icon-placeholder">🏕️</div>
                         <h3 class="experience__title">Пикники в беседках</h3>
                         <p class="experience__text">Уютные беседки с барбекю для отдыха на природе</p>
                     </div>
                     
-                    <div class="experience__item" data-aos="fade-up" data-aos-delay="400">
-                        <div class="experience__icon">
-                            <img src="img/icons/quad.svg" alt="Квадроциклы">
-                        </div>
+                    <div class="experience__item">
+                        <div class="icon-placeholder">🏍️</div>
                         <h3 class="experience__title">Квадроциклы и эндуро</h3>
-                        <p class="experience__text">Экстремальные поездки по лесным тропам <a href="https://vk.com/pitbikeomskendurotravel" target="_blank">Подробности в VK</a></p>
+                        <p class="experience__text">Экстремальные поездки по лесным тропам</p>
                     </div>
                     
-                    <div class="experience__item" data-aos="fade-up" data-aos-delay="600">
-                        <div class="experience__icon">
-                            <img src="img/icons/fishing.svg" alt="Рыбалка">
-                        </div>
+                    <div class="experience__item">
+                        <div class="icon-placeholder">🎣</div>
                         <h3 class="experience__title">Рыбалка на Иртыше</h3>
                         <p class="experience__text">Спокойный отдых с удочкой на берегу реки</p>
                     </div>
@@ -303,38 +280,28 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
+                
                 <div class="footer__col">
-                    <a href="index.html" class="footer__logo">Дом отдыха Сибиряк</a>
-                    <p class="footer__text">База отдыха в чистом сосновом лесу на берегу реки Иртыш для незабываемого отдыха в гармонии с природой.</p>
+                    <a href="index.html" class="footer__logo">Сибиряк</a>
+                    <p class="footer__text">База отдыха в сосновом бору для тех, кто ценит природу и комфорт.</p>
                 </div>
                 
                 <div class="footer__col">
                     <h3 class="footer__title">Контакты</h3>
                     <address class="footer__address">
-                        <p>Курортный посёлок Красноярка,</p>
-                        <p>Омская область, Россия</p>
+                        <p>Омская область, Омский район</p>
+                        <p>пос. Красноярка, ул. Кирова, 44</p>
                     </address>
-                    <div class="contact-links">
-                        <a href="tel:+79083103616" class="phone">8 908 310 36 16</a>
-                        <a href="mailto:matvey.matveev.87@list.ru" class="email">matvey.matveev.87@list.ru</a>
-                    </div>
+                    <a href="tel:+79083103616" class="footer__phone">8 908 310 36 16</a>
+                    <a href="mailto:matvey.matveev.87@list.ru" class="footer__email">matvey.matveev.87@list.ru</a>
                 </div>
                 
                 <div class="footer__col">
-                    <h3 class="footer__title">Подписаться</h3>
-                    <form class="footer__form">
-                        <input type="email" placeholder="Ваш email" required>
-                        <button type="submit">
-                            <svg width="13px" height="10px" viewBox="0 0 13 10">
-                                <path d="M1,5 L11,5"></path>
-                                <polyline points="8 1 12 5 8 9"></polyline>
-                            </svg>
-                        </button>
-                    </form>
+                    <h3 class="footer__title">Мы в соцсетях</h3>
                     <div class="footer__social">
-                        <a href="#" class="footer__social-link">Instagram</a>
-                        <a href="#" class="footer__social-link">Facebook</a>
-                        <a href="#" class="footer__social-link">YouTube</a>
+                        <a href="https://vk.com/sibyriak" target="_blank" class="footer__social-link">ВКонтакте</a>
+                        <a href="https://wa.me/79083103616" target="_blank" class="footer__social-link">WhatsApp</a>
+                        <a href="mailto:matvey.matveev.87@list.ru" class="footer__social-link">Почта</a>
                     </div>
                 </div>
             </div>
@@ -346,18 +313,45 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax.js/1.5.0/parallax.min.js"></script>
-    <script src="js/app.js"></script>
+    <!-- Упрощенные скрипты -->
     <script>
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
+        // Простой прелоадер
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.preloader').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.preloader').style.display = 'none';
+                }, 500);
+            }, 1000);
         });
+
+        // Бургер меню
+        document.querySelector('.burger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+        });
+
+        // Простая анимация появления элементов при скролле
+        function checkScroll() {
+            const elements = document.querySelectorAll('.section__title, .room-card, .experience__item');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                if (position.top < window.innerHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Добавляем базовые стили для анимации
+        document.querySelectorAll('.section__title, .room-card, .experience__item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+        });
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
     </script>
 </body>
 </html>
