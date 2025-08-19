@@ -112,27 +112,49 @@
                 
                 <div class="contact-hours" data-aos="fade-up" data-aos-delay="200">
                     <h3>Часы работы</h3>
-                    <ul>
-                        <li>
+                    <div class="hours-container">
+                        <div class="hours-line">
                             <span>Понедельник - Воскресенье</span>
                             <span>Круглосуточно</span>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="hours-line">
                             <span>Ресепшен</span>
-                            <span>8:00 - 22:00</span>
-                        </li>
-                        <li>
+                            <span>10:00 - 20:00</span>
+                        </div>
+                        <div class="hours-line">
                             <span>Столовая</span>
                             <span>9:00 - 20:00</span>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="hours-line">
                             <span>Прокат</span>
                             <span>По записи</span>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+
+                <style>
+                .hours-container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                }
+
+                .hours-line {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 8px 0;
+                }
+
+                .hours-line span:first-child {
+                    font-weight: 500;
+                }
+
+                .hours-line span:last-child {
+                    color: #666;
+                    text-align: right;
+                }
+                </style>
 
         <!-- FAQ Section -->
         <section class="contact-faq section">
@@ -212,7 +234,7 @@
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Если это не крупная порода.</p>
+                            <p>Если это не крупная порода</p>
                         </div>
                     </div>
                 </div>
@@ -227,7 +249,7 @@
                 
                 <div class="footer__col">
                     <a href="index.html" class="footer__logo">Сибиряк</a>
-                    <p class="footer__text">База отдыха в сосновом бору на берегу реки Иртыш для тех, кто ценит природу и комфорт.</p>
+                    <p class="footer__text">База отдыха в сосновом бору для тех, кто ценит природу и комфорт.</p>
                 </div>
 
                 <div class="footer__col">
