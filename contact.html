@@ -5,7 +5,551 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакты | Дом отдыха Сибиряк</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Base styles - такие же как на главной */
+        :root {
+            --primary: #c19a6b;
+            --primary-dark: #a5825d;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --gray: #95a5a6;
+            --white: #ffffff;
+            --black: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            gap: 10px;
+        }
+        
+        .btn--primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn--primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section__title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section__title-sub {
+            display: block;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section__title-main {
+            display: block;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Contact Page Specific Styles */
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x600/4F6B7F/FFFFFF/png?text=Контакты') center/cover no-repeat;
+            padding: 150px 0 80px;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        
+        .page-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Contact Info */
+        .contact-info__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .contact-info__card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(193, 154, 107, 0.1);
+        }
+        
+        .contact-info__card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-info__icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(193, 154, 107, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .contact-info__icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--primary);
+        }
+        
+        .contact-info__card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .contact-info__card address,
+        .contact-info__card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        .contact-info__card a {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .contact-info__card a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--light);
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 50px;
+        }
+        
+        .contact-hours {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .contact-hours h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--dark);
+            text-align: center;
+        }
+        
+        .hours-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .hours-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .hours-line:last-child {
+            border-bottom: none;
+        }
+        
+        .hours-line span:first-child {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .hours-line span:last-child {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* FAQ Section */
+        .contact-faq {
+            background: var(--light);
+        }
+        
+        .faq-accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: 25px 30px;
+            text-align: left;
+            background: none;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        
+        .faq-question svg {
+            width: 15px;
+            height: 9px;
+            fill: none;
+            stroke: var(--dark);
+            stroke-width: 2;
+            transition: var(--transition);
+        }
+        
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+            stroke: var(--primary);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        
+        .faq-answer-content {
+            padding: 0 30px 25px;
+        }
+        
+        .faq-answer p {
+            margin-bottom: 15px;
+            color: var(--gray);
+        }
+        
+        .faq-answer ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .faq-answer li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: var(--gray);
+        }
+        
+        .faq-answer li:before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .footer {
+            padding: 100px 0 0;
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .footer__inner {
+            display: flex;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer__col {
+            flex: 1;
+        }
+
+        .footer__logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        .footer__text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .footer__title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .footer__address {
+            font-style: normal;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer__phone,
+        .footer__email {
+            display: block;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer__phone:hover,
+        .footer__email:hover {
+            color: var(--primary);
+        }
+
+        .footer__form {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .footer__form input {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 14px;
+        }
+
+        .footer__form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer__form button {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .footer__form button svg {
+            stroke: var(--primary);
+        }
+
+        .footer__social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer__social-link {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+
+        .footer__social-link:hover {
+            color: var(--primary);
+        }
+
+        .footer__bottom {
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer__copyright {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer__policy {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+
+        .footer__policy:hover {
+            color: var(--primary);
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 120px 0 60px;
+                margin-top: 70px;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .contact-info__grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-info__card {
+                padding: 30px 20px;
+            }
+            
+            .contact-hours {
+                padding: 30px 20px;
+            }
+            
+            .hours-line {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+            
+            .faq-question {
+                padding: 20px;
+                font-size: 16px;
+            }
+            
+            .faq-answer-content {
+                padding: 0 20px 20px;
+            }
+            
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: var(--white);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 999;
+                padding: 80px 20px 20px;
+            }
+            
+            .nav.active {
+                right: 0;
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .header__contacts {
+                display: none;
+            }
+            
+            .burger {
+                display: flex;
+                z-index: 1000;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section__title-main {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -38,7 +582,7 @@
                     </ul>
                 </nav>
                 
-                <div class="header__contacts" data-aos="fade-down" data-aos-delay="400">
+                <div class="header__contacts">
                     <div class="contact-links">
                         <a href="tel:+79083103616" class="phone">8 908 310 36 16</a>
                         <a href="mailto:matvey.matveev.87@list.ru" class="email">matvey.matveev.87@list.ru</a>
@@ -46,6 +590,8 @@
                 </div>
                 
                 <button class="burger" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
                     <span class="burger__line"></span>
                 </button>
             </div>
@@ -56,17 +602,17 @@
     <main class="contact-page">
         <!-- Page Header -->
         <section class="page-header">
-            <div class="container"></div>
-                <h1 class="page-title" data-aos="fade-up">Контакты</h1>
-                <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">Мы всегда рады вашему обращению</p>
+            <div class="container">
+                <h1 class="page-title">Контакты</h1>
+                <p class="page-subtitle">Мы всегда рады вашему обращению</p>
             </div>
         </section>
 
         <!-- Contact Info -->
-        <section class="contact-info section">
+        <section class="section contact-info">
             <div class="container">
                 <div class="contact-info__grid">
-                    <div class="contact-info__card" data-aos="fade-up">
+                    <div class="contact-info__card">
                         <div class="contact-info__icon">
                             <svg width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -79,7 +625,7 @@
                         </address>
                     </div>
                     
-                    <div class="contact-info__card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-info__card">
                         <div class="contact-info__icon">
                             <svg width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
@@ -91,7 +637,7 @@
                         </p>
                     </div>
                     
-                    <div class="contact-info__card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-info__card">
                         <div class="contact-info__icon">
                             <svg width="24" height="24" viewBox="0 0 24 24">
                                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
@@ -107,13 +653,13 @@
         </section>
 
         <!-- Map Section -->
-        <section class="map-section section">
+        <section class="section map-section">
             <div class="container">
-                <div class="map-container" data-aos="fade-up">
+                <div class="map-container">
                     <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Abc1cd4c3c5f802b38e94601b7f6daec8008e3080115e4200a517b7005c93e919&amp;width=100%&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
                 </div>
                 
-                <div class="contact-hours" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-hours">
                     <h3>Часы работы</h3>
                     <div class="hours-container">
                         <div class="hours-line">
@@ -134,41 +680,19 @@
                         </div>
                     </div>
                 </div>
-
-                <style>
-                .hours-container {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 12px;
-                }
-
-                .hours-line {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 8px 0;
-                }
-
-                .hours-line span:first-child {
-                    font-weight: 500;
-                }
-
-                .hours-line span:last-child {
-                    color: #666;
-                    text-align: right;
-                }
-                </style>
+            </div>
+        </section>
 
         <!-- FAQ Section -->
-        <section class="contact-faq section">
+        <section class="section contact-faq">
             <div class="container">
-                <h2 class="section__title" data-aos="fade-up">
+                <h2 class="section__title">
                     <span class="section__title-sub">Частые</span>
                     <span class="section__title-main">Вопросы</span>
                 </h2>
                 
                 <div class="faq-accordion">
-                    <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-item">
                         <button class="faq-question">
                             Как добраться до базы отдыха?
                             <svg width="15" height="9" viewBox="0 0 15 9">
@@ -176,15 +700,17 @@
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Наша база отдыха расположена в 50 км от Омска. Варианты проезда:</p>
-                            <ul>
-                                <li><strong>На автомобиле или такси:</strong> по Черлакскому тракту до указателя "Красноярка", затем 5 км по лесной дороге</li>
-                                <li><strong>Общественный транспорт:</strong> автобус №343 от автовокзала до остановки "Красноярка"</li>
-                            </ul>
+                            <div class="faq-answer-content">
+                                <p>Наша база отдыха расположена в 50 км от Омска. Варианты проезда:</p>
+                                <ul>
+                                    <li><strong>На автомобиле или такси:</strong> по Черлакскому тракту до указателя "Красноярка", затем 5 км по лесной дороге</li>
+                                    <li><strong>Общественный транспорт:</strong> автобус №343 от автовокзала до остановки "Красноярка"</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-item">
                         <button class="faq-question">
                             Какие способы оплаты вы принимаете?
                             <svg width="15" height="9" viewBox="0 0 15 9">
@@ -192,15 +718,17 @@
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Мы принимаем:</p>
-                            <ul>
-                                <li>Наличные (рубли)</li>
-                                <li>Переводы по СБП (Система быстрых платежей)</li>
-                            </ul>
+                            <div class="faq-answer-content">
+                                <p>Мы принимаем:</p>
+                                <ul>
+                                    <li>Наличные (рубли)</li>
+                                    <li>Переводы по СБП (Система быстрых платежей)</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-item">
                         <button class="faq-question">
                             Кому можно бесплатно?
                             <svg width="15" height="9" viewBox="0 0 15 9">
@@ -208,11 +736,13 @@
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Детям до 6 лет</p>
+                            <div class="faq-answer-content">
+                                <p>Детям до 6 лет</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-item">
                         <button class="faq-question">
                             Есть ли у вас скидки?
                             <svg width="15" height="9" viewBox="0 0 15 9">
@@ -220,16 +750,18 @@
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Скидки в размере 20% предоставляются:</p>
-                            <ul>
-                                <li>Пенсионерам</li>
-                                <li>Членам профсоюзныз организаций</li>
-                                <li>Ветеранам и участникам боевых действий</li>
-                            </ul>
+                            <div class="faq-answer-content">
+                                <p>Скидки в размере 20% предоставляются:</p>
+                                <ul>
+                                    <li>Пенсионерам</li>
+                                    <li>Членам профсоюзныз организаций</li>
+                                    <li>Ветеранам и участникам боевых действий</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item" data-aos="fade-up">
+                    <div class="faq-item">
                         <button class="faq-question">
                             Можно ли с питомцами?
                             <svg width="15" height="9" viewBox="0 0 15 9">
@@ -237,7 +769,9 @@
                             </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>Если это не крупная порода</p>
+                            <div class="faq-answer-content">
+                                <p>Если это не крупная порода</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -292,7 +826,7 @@
                             </svg>
                             ВКонтакте
                         </a>
-                        <a href="https://wa.me/79083103616" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                        <a href="https://wa.me/+79083103616" target="_blank" rel="noopener noreferrer" class="footer__social-link">
                             <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
                                 <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27z"/>
                             </svg>
@@ -315,22 +849,25 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="js/app.js"></script>
-    
     <script>
-        // Инициализация AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
+        // Preloader
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.preloader').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.preloader').style.display = 'none';
+                }, 500);
+            }, 1000);
         });
 
+        // Burger menu
+        document.querySelector('.burger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav').classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
 
-        // Закрытие меню при клике на ссылку
+        // Close menu on link click
         document.querySelectorAll('.nav__link').forEach(link => {
             link.addEventListener('click', function() {
                 document.querySelector('.burger').classList.remove('active');
@@ -339,7 +876,7 @@
             });
         });
 
-        // Фиксированный хедер при скролле
+        // Sticky header
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
@@ -351,28 +888,6 @@
             }
         });
 
-        // Анимация появления элементов при скролле
-        function checkScroll() {
-            const elements = document.querySelectorAll('.section__title, .room-card, .experience__item, .about__feature');
-            elements.forEach(element => {
-                const position = element.getBoundingClientRect();
-                if (position.top < window.innerHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }
-            });
-        }
-
-        // Добавляем базовые стили для анимации
-        document.querySelectorAll('.section__title, .room-card, .experience__item, .about__feature').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
-        });
-
-        window.addEventListener('scroll', checkScroll);
-        window.addEventListener('load', checkScroll);
-
         // FAQ Accordion
         document.addEventListener('DOMContentLoaded', function() {
             const faqQuestions = document.querySelectorAll('.faq-question');
@@ -382,7 +897,7 @@
                     const item = question.parentNode;
                     const answer = question.nextElementSibling;
                     
-                    // Закрываем все открытые элементы
+                    // Close all other items
                     document.querySelectorAll('.faq-item').forEach(faqItem => {
                         if (faqItem !== item && faqItem.classList.contains('active')) {
                             faqItem.classList.remove('active');
@@ -390,7 +905,7 @@
                         }
                     });
                     
-                    // Открываем/закрываем текущий элемент
+                    // Toggle current item
                     item.classList.toggle('active');
                     
                     if (item.classList.contains('active')) {
@@ -401,6 +916,28 @@
                 });
             });
         });
+
+        // Scroll animations
+        function checkScroll() {
+            const elements = document.querySelectorAll('.contact-info__card, .faq-item, .section__title');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                if (position.top < window.innerHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Add base styles for animation
+        document.querySelectorAll('.contact-info__card, .faq-item, .section__title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+        });
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
     </script>
 </body>
 </html>
