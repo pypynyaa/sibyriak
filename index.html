@@ -8,45 +8,144 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        /* Base styles */
+        :root {
+            --primary: #c19a6b;
+            --primary-dark: #a5825d;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --gray: #95a5a6;
+            --white: #ffffff;
+            --black: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            gap: 10px;
+        }
+        
+        .btn--primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .btn--primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section__title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section__title-sub {
+            display: block;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section__title-main {
+            display: block;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
         /* Badge styling for "Популярный выбор" and "Премиум" */
         .room-card__badge {
             position: absolute;
             top: 15px;
             right: 15px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1em;
+            font-size: 0.8em;
             font-weight: 700;
             color: white;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             text-transform: uppercase;
             z-index: 10;
         }
+        
         .room-card__badge[data-badge="popular"] {
             background: linear-gradient(135deg, #28a745 0%, #218838 100%);
         }
+        
         .room-card__badge[data-badge="premium"] {
             background: linear-gradient(135deg, #d4a017 0%, #b8860b 100%);
         }
         
         /* Упрощенные стили для иконок */
         .icon-placeholder {
-            width: 60px;
-            height: 60px;
+            width: 80px; /* Увеличил размер */
+            height: 80px; /* Увеличил размер */
             background: rgba(193, 154, 107, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 20px;
-            font-size: 24px;
+            font-size: 36px; /* Увеличил размер смайликов */
             color: var(--primary);
         }
         
         /* Упрощенный параллакс */
         .experience {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
             padding: 100px 0;
             color: white;
             position: relative;
@@ -60,7 +159,556 @@
             height: 100%;
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             z-index: -1;
+        }
+        
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .preloader__inner {
+            text-align: center;
+        }
+        
+        .preloader__logo {
+            margin-bottom: 20px;
+        }
+        
+        .preloader__text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            fill: var(--primary);
+            animation: fadeIn 1s ease;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+        
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .logo__text:first-child {
+            font-size: 14px;
+            color: var(--primary);
+        }
+        
+        .logo__text:last-child {
+            font-size: 22px;
+        }
+        
+        .nav__list {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav__link {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav__link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav__link:hover:after,
+        .nav__link.active:after {
+            width: 100%;
+        }
+        
+        .header__contacts {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .contact-links a {
+            display: block;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+        
+        .contact-links a:hover {
+            color: var(--primary);
+        }
+        
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .burger__line {
+            width: 100%;
+            height: 2px;
+            background: var(--dark);
+            transition: var(--transition);
+        }
+        
+        /* Hero */
+        /* Hero - исправленные стили */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .hero__slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero__content {
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            height: 100vh !important;
+        }
+
+        .hero__title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero__title-line {
+            display: block;
+        }
+        
+        .hero__scroll {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .hero__scroll-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .hero__scroll-line {
+            width: 1px;
+            height: 50px;
+            background: var(--white);
+            margin: 0 auto;
+            animation: scrollLine 2s infinite;
+        }
+        
+        /* About */
+        .about__inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about__text {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .about__features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .about__feature {
+            text-align: center;
+        }
+        
+        .about__feature-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .about__feature-text {
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .about__media {
+            position: relative;
+        }
+        
+        .about__image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .about__image-decor {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        /* Rooms */
+        .rooms__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .room-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .room-card__media {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .room-card__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .room-card:hover .room-card__image {
+            transform: scale(1.05);
+        }
+        
+        .room-card__content {
+            padding: 20px;
+        }
+        
+        .room-card__title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .room-card__text {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .room-card__meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .room-card__meta-item {
+            font-size: 14px;
+            color: var(--dark);
+            background: rgba(193, 154, 107, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .room-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .room-card__price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .room-card__link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 500;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+        
+        .room-card__link:hover {
+            color: var(--primary);
+            gap: 10px;
+        }
+        
+        /* Experience */
+        .experience__inner {
+            text-align: center;
+        }
+        
+        .experience__content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .experience__item {
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        
+        .experience__item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .experience__title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .experience__text {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Исправление центрирования hero */
+        .hero__content {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            min-height: 100vh !important;
+            margin: 0 auto !important;
+        }
+
+        .hero__title {
+            width: 100% !important;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes scrollLine {
+            0% { height: 0; opacity: 0; }
+            50% { height: 50px; opacity: 1; }
+            100% { height: 0; opacity: 0; }
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .section__title-main {
+                font-size: 32px;
+            }
+            
+            .hero__title {
+                font-size: 40px;
+            }
+            
+            .about__inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .about__features {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section__title-main {
+                font-size: 28px;
+            }
+            
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: var(--white);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 999;
+                padding: 80px 20px 20px;
+            }
+            
+            .nav.active {
+                right: 0;
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .header__contacts {
+                display: none;
+            }
+            
+            .burger {
+                display: flex;
+                z-index: 1000;
+            }
+            
+            .burger.active .burger__line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .burger.active .burger__line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .burger.active .burger__line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .hero__title {
+                font-size: 32px;
+            }
+            
+            .experience__content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer__inner {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer__bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero__content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                min-height: 100vh;
+            }
+
+            .hero__title-line {
+                display: block;
+            }
+
+            .btn--primary {
+                margin-top: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .section__title-main {
+                font-size: 24px;
+            }
+            
+            .hero__title {
+                font-size: 28px;
+            }
+            
+            .hero__title-line {
+                display: inline;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .room-card__footer {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .icon-placeholder {
+                width: 70px;
+                height: 70px;
+                font-size: 30px;
+            }
         }
     </style>
 </head>
@@ -104,6 +752,8 @@
                 
                 <button class="burger" aria-label="Меню">
                     <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
                 </button>
             </div>
         </div>
@@ -111,14 +761,14 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero__slide" style="background-image: url('img/sibiryak-hero.jpg')">
+        <div class="hero__slide" style="background-image: url('img/sibiryak-hero.jpg');">
             <div class="container">
-                <div class="hero__content">
+                <div class="hero__content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100vh;">
                     <h1 class="hero__title">
                         <span class="hero__title-line">Отдых в сосновом лесу</span>
                         <span class="hero__title-line">на берегу Иртыша</span>
                     </h1>
-                    <a href="https://wa.me/89083103616" class="btn btn--primary">
+                    <a href="https://wa.me/+79083103616" class="btn btn--primary" style="margin-top: 20px;">
                         <span>Забронировать</span>
                         <svg width="13px" height="10px" viewBox="0 0 13 10">
                             <path d="M1,5 L11,5"></path>
@@ -127,11 +777,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        
-        <div class="hero__scroll">
-            <div class="hero__scroll-text">Листайте вниз</div>
-            <div class="hero__scroll-line"></div>
         </div>
     </section>
 
@@ -166,7 +811,7 @@
                 
                 <div class="about__media">
                     <div class="about__image">
-                        <img src="img/about-image.jpg" alt="О доме отдыха" class="about__image-main">
+                        <img src="https://placehold.co/600x400/4F6B7F/FFFFFF/png?text=Территория+дома+отдыха" alt="О доме отдыха" class="about__image-main">
                         <div class="about__image-decor"></div>
                     </div>
                 </div>
@@ -185,7 +830,7 @@
             <div class="rooms__grid">
                 <div class="room-card">
                     <div class="room-card__media">
-                        <img src="img/room-standard.jpg" alt="3-местный Стандарт" class="room-card__image">
+                        <img src="https://placehold.co/600x400/4F6B7F/FFFFFF/png?text=Стандартный+номер" alt="3-местный Стандарт" class="room-card__image">
                         <div class="room-card__badge" data-badge="popular">Популярный выбор</div>
                     </div>
                     
@@ -213,7 +858,7 @@
                 
                 <div class="room-card">
                     <div class="room-card__media">
-                        <img src="img/room-luxury.jpg" alt="2-комнатный Люкс" class="room-card__image">
+                        <img src="https://placehold.co/600x400/4F6B7F/FFFFFF/png?text=Люксовый+номер" alt="2-комнатный Люкс" class="room-card__image">
                         <div class="room-card__badge" data-badge="premium">Премиум</div>
                     </div>
                     
@@ -244,7 +889,7 @@
 
     <!-- Experience -->
     <section class="experience">
-        <div class="experience-bg" style="background-image: url('img/irtysh-bg.jpg')"></div>
+        <div class="experience-bg" style="background-image: url('https://placehold.co/1920x1080/2C3E50/FFFFFF/png?text=Река+Иртыш')"></div>
         
         <div class="container">
             <div class="experience__inner">
@@ -285,6 +930,24 @@
                     <a href="index.html" class="footer__logo">Сибиряк</a>
                     <p class="footer__text">База отдыха в сосновом бору для тех, кто ценит природу и комфорт.</p>
                 </div>
+
+                <div class="footer__col">
+                    <h3 class="footer__title">Разработчик</h3>
+                    <div class="footer__social">
+                        <a href="https://github.com/pypynyaa" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display: block; margin-bottom: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;vertical-align:middle;">
+                                <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://t.me/pypynyaa" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display: block;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;vertical-align:middle;">
+                                <path fill="currentColor" d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                            </svg>
+                            Telegram
+                        </a>
+                    </div>
+                </div>
                 
                 <div class="footer__col">
                     <h3 class="footer__title">Контакты</h3>
@@ -299,9 +962,24 @@
                 <div class="footer__col">
                     <h3 class="footer__title">Мы в соцсетях</h3>
                     <div class="footer__social">
-                        <a href="https://vk.com/sibyriak" target="_blank" class="footer__social-link">ВКонтакте</a>
-                        <a href="https://wa.me/79083103616" target="_blank" class="footer__social-link">WhatsApp</a>
-                        <a href="mailto:matvey.matveev.87@list.ru" class="footer__social-link">Почта</a>
+                        <a href="https://vk.com/sibyriak" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
+                                <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 15.5L7 11h2.5L11 14.5 14.5 7H17L12 17.5z"/>
+                            </svg>
+                            ВКонтакте
+                        </a>
+                        <a href="https://wa.me/79083103616" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
+                                <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                        <a href="mailto:matvey.matveev.87@list.ru" class="footer__social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
+                                <path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5l-8-5h16zm0 12H4V8l8 5l8-5v10z"/>
+                            </svg>
+                            Почта
+                        </a>
                     </div>
                 </div>
             </div>
@@ -313,7 +991,6 @@
         </div>
     </footer>
 
-    <!-- Упрощенные скрипты -->
     <script>
         // Простой прелоадер
         window.addEventListener('load', function() {
@@ -329,11 +1006,33 @@
         document.querySelector('.burger').addEventListener('click', function() {
             this.classList.toggle('active');
             document.querySelector('.nav').classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
         });
 
-        // Простая анимация появления элементов при скролле
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav__link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.burger').classList.remove('active');
+                document.querySelector('.nav').classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+
+        // Фиксированный хедер при скролле
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.padding = '15px 0';
+            }
+        });
+
+        // Анимация появления элементов при скролле
         function checkScroll() {
-            const elements = document.querySelectorAll('.section__title, .room-card, .experience__item');
+            const elements = document.querySelectorAll('.section__title, .room-card, .experience__item, .about__feature');
             elements.forEach(element => {
                 const position = element.getBoundingClientRect();
                 if (position.top < window.innerHeight - 100) {
@@ -344,7 +1043,7 @@
         }
 
         // Добавляем базовые стили для анимации
-        document.querySelectorAll('.section__title, .room-card, .experience__item').forEach(el => {
+        document.querySelectorAll('.section__title, .room-card, .experience__item, .about__feature').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease';
