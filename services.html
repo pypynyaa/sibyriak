@@ -1,202 +1,202 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <link rel="icon" href="data:;base64,="> <!-- Пустая favicon -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Услуги | Дом отдыха Сибиряк</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
     <style>
+        /* Base styles - как на главной */
         :root {
             --primary: #c19a6b;
             --primary-dark: #a5825d;
-            --secondary: #2c3e50;
-            --light: #f8f9fa;
-            --dark: #2a2a2a;
-            --text: #333;
-            --text-light: #777;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --gray: #95a5a6;
+            --white: #ffffff;
+            --black: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
             --success: #28a745;
             --success-dark: #218838;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
-            color: var(--text);
+            color: var(--black);
             background-color: var(--light);
             overflow-x: hidden;
         }
-
+        
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        .section {
-            padding: 80px 0;
+        
+        a {
+            text-decoration: none;
+            color: inherit;
         }
-
-        .section__title {
-            text-align: center;
-            margin-bottom: 60px;
+        
+        ul {
+            list-style: none;
         }
-
-        .section__title-sub {
+        
+        img {
+            max-width: 100%;
+            height: auto;
             display: block;
-            font-size: 18px;
-            color: var(--primary);
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
         }
-
-        .section__title-main {
-            display: block;
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--secondary);
-            line-height: 1.2;
-        }
-
+        
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 15px 35px;
-            font-weight: 600;
-            font-size: 16px;
-            text-transform: uppercase;
-            border-radius: 8px;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 500;
             transition: var(--transition);
-            text-decoration: none;
             border: none;
             cursor: pointer;
             gap: 10px;
         }
-
+        
         .btn--primary {
             background: var(--primary);
-            color: white;
+            color: var(--white);
         }
-
+        
         .btn--primary:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
-
+        
         .btn--success {
             background: var(--success);
-            color: white;
+            color: var(--white);
         }
-
+        
         .btn--success:hover {
             background: var(--success-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow);
         }
-
-        /* Header Styles - такая же как на всех страницах */
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section__title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section__title-sub {
+            display: block;
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section__title-main {
+            display: block;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        /* Header - как на главной */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             padding: 15px 0;
             transition: var(--transition);
         }
-
-        .header.scrolled {
-            padding: 10px 0;
-            background: rgba(255, 255, 255, 0.98);
-        }
-
+        
         .header__inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
-
+        
         .logo {
             display: flex;
             flex-direction: column;
             font-weight: 700;
-            color: var(--secondary);
-            line-height: 1;
+            color: var(--dark);
         }
-
+        
         .logo__text:first-child {
             font-size: 14px;
             color: var(--primary);
-            margin-bottom: 2px;
         }
-
+        
         .logo__text:last-child {
             font-size: 22px;
         }
-
+        
         .nav__list {
             display: flex;
-            align-items: center;
             gap: 30px;
-            list-style: none;
         }
-
+        
         .nav__link {
-            font-size: 14px;
             font-weight: 500;
-            text-transform: uppercase;
-            color: var(--dark);
             transition: var(--transition);
             position: relative;
         }
-
-        .nav__link:hover,
-        .nav__link.active {
-            color: var(--primary);
+        
+        .nav__link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
-
+        
+        .nav__link:hover:after,
+        .nav__link.active:after {
+            width: 100%;
+        }
+        
         .header__contacts {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
         }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .contact-links .phone {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--primary);
+        
+        .contact-links a {
+            display: block;
+            font-size: 14px;
             transition: var(--transition);
         }
-
-        .contact-links .phone:hover {
-            color: var(--primary-dark);
+        
+        .contact-links a:hover {
+            color: var(--primary);
         }
-
+        
         .burger {
             display: none;
             flex-direction: column;
@@ -208,107 +208,102 @@
             cursor: pointer;
             padding: 0;
         }
-
+        
         .burger__line {
             width: 100%;
             height: 2px;
             background: var(--dark);
             transition: var(--transition);
         }
-
-        /* Page Header */
+        
+        /* Page header */
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1920x600/4F6B7F/FFFFFF/png?text=Наши+Услуги') center/cover no-repeat;
-            padding: 150px 0 80px;
+            padding: 300px 100px 150px;
             text-align: center;
-            color: white;
-            margin-top: 80px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/IMAGE 2025-08-23 00:55:41.jpg') center/cover no-repeat;
+            color: var(--white);
         }
-
+        
         .page-title {
             font-size: 48px;
             font-weight: 700;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
-
+        
         .page-subtitle {
             font-size: 18px;
             opacity: 0.9;
             max-width: 600px;
             margin: 0 auto;
         }
-
+        
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin: 40px 0;
         }
 
         .service-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            text-align: center;
-            border: 1px solid rgba(193, 154, 107, 0.1);
         }
-
+        
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
-
-        .service-card__icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(193, 154, 107, 0.1);
-            border-radius: 50%;
+        
+        .service-card__media {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
         }
-
-        .service-card__icon img {
-            width: 40px;
-            height: 40px;
+        
+        .service-card__image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-
+        
+        .service-card:hover .service-card__image {
+            transform: scale(1.05);
+        }
+        
+        .service-card__content {
+            padding: 20px;
+        }
+        
         .service-card__title {
             font-size: 20px;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+            color: var(--dark);
         }
-
-        .service-card__content {
-            margin-bottom: 25px;
+        
+        .service-card__text {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 14px;
         }
-
-        .service-card__content p {
-            color: var(--text-light);
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
+        
         .service-features {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
-
+        
         .service-features li {
-            padding: 8px 0;
+            padding: 5px 0;
             border-bottom: 1px solid #eee;
-            color: var(--text-light);
+            color: var(--gray);
             position: relative;
             padding-left: 20px;
+            font-size: 14px;
         }
-
+        
         .service-features li:before {
             content: "•";
             color: var(--primary);
@@ -316,93 +311,103 @@
             position: absolute;
             left: 0;
         }
-
+        
         .service-features li:last-child {
             border-bottom: none;
         }
-
+        
         .service-price {
-            font-size: 18px;
             font-weight: 700;
             color: var(--primary);
-            margin: 20px 0;
+            margin-bottom: 20px;
+            font-size: 18px;
         }
-
+        
         /* Gazebo Highlight */
         .gazebo-highlight {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 20px;
+            background: var(--white);
+            border-radius: 10px;
             box-shadow: var(--shadow);
-            padding: 40px;
+            padding: 30px;
             margin: 60px 0;
             text-align: center;
             transition: var(--transition);
-            border: 2px solid var(--primary);
+            border: 2px solid var(--success);
         }
 
         .gazebo-highlight:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
 
-        .gazebo-highlight .service-card__icon {
-            margin-bottom: 25px;
+        .gazebo-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(40, 167, 69, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: var(--success);
         }
 
         .gazebo-highlight h3 {
-            font-size: 28px;
+            font-size: 24px;
             color: var(--success);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 700;
         }
 
         .gazebo-highlight p {
-            font-size: 18px;
-            color: var(--text);
-            margin-bottom: 25px;
+            color: var(--gray);
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
         /* Extra Services */
         .extra-services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
             margin-top: 40px;
         }
 
         .extra-service {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
             box-shadow: var(--shadow);
             transition: var(--transition);
         }
-
+        
         .extra-service:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
-
+        
         .extra-service h3 {
             font-size: 18px;
-            color: var(--secondary);
-            margin-bottom: 15px;
+            color: var(--dark);
+            margin-bottom: 10px;
             font-weight: 600;
         }
-
+        
         .extra-service p {
-            color: var(--text-light);
+            color: var(--gray);
             line-height: 1.6;
             margin-bottom: 10px;
+            font-size: 14px;
         }
-
+        
         .extra-service a {
             color: var(--primary);
             text-decoration: none;
             transition: var(--transition);
+            font-size: 14px;
         }
-
+        
         .extra-service a:hover {
             color: var(--primary-dark);
             text-decoration: underline;
@@ -410,10 +415,11 @@
 
         /* Booking Block */
         .services-booking {
-            background: linear-gradient(rgba(193, 154, 107, 0.9), rgba(193, 154, 107, 0.9)), url('https://placehold.co/1920x400/4F6B7F/FFFFFF/png?text=Забронируйте+Отдых') center/cover no-repeat;
-            color: white;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/IMAGE 2025-08-23 01:03:41.jpg') center/cover no-repeat;
+            color: var(--white);
             text-align: center;
             padding: 80px 0;
+            position: relative;
         }
 
         .booking-block {
@@ -422,156 +428,40 @@
             padding: 40px;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
+            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .booking-content h2 {
-            font-size: 36px;
+            font-size: 32px;
             margin-bottom: 20px;
             font-weight: 700;
         }
 
         .booking-content p {
-            font-size: 18px;
             opacity: 0.9;
             margin-bottom: 30px;
             line-height: 1.6;
         }
 
-        /* Footer */
-        .footer {
-            background: var(--secondary);
-            color: white;
-            padding: 80px 0 30px;
-        }
-
-        .footer__inner {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer__col {
-            padding: 20px;
-        }
-
-        .footer__logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .footer__text {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .footer__title {
-            font-size: 18px;
-            color: var(--primary);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .footer__address {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-style: normal;
-        }
-
-        .footer__phone,
-        .footer__email {
-            display: block;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 10px;
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .footer__phone:hover,
-        .footer__email:hover {
-            color: var(--primary);
-        }
-
-        .footer__social {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .footer__social-link {
-            display: flex;
-            align-items: center;
-            color: rgba(255, 255, 255, 0.8);
-            transition: var(--transition);
-            text-decoration: none;
-        }
-
-        .footer__social-link:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .footer__social-link svg {
-            margin-right: 10px;
-            width: 20px;
-            height: 20px;
-        }
-
-        .footer__bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            text-align: center;
-        }
-
-        .footer__copyright {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-        }
-
-        .footer__policy {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 14px;
-        }
-
-        .footer__policy:hover {
-            color: var(--primary);
-        }
-
         /* Responsive Design */
         @media (max-width: 992px) {
             .section__title-main {
-                font-size: 36px;
+                font-size: 32px;
             }
             
             .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            }
-            
-            .nav {
-                display: none;
-            }
-            
-            .burger {
-                display: flex;
-            }
-            
-            .header__contacts {
-                display: none;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             }
         }
-
+        
         @media (max-width: 768px) {
             .section {
                 padding: 60px 0;
+            }
+            
+            .page-header {
+                padding: 130px 0 60px;
             }
             
             .page-title {
@@ -579,15 +469,58 @@
             }
             
             .section__title-main {
-                font-size: 32px;
+                font-size: 28px;
+            }
+            
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background: var(--white);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 999;
+                padding: 80px 20px 20px;
+            }
+            
+            .nav.active {
+                right: 0;
+            }
+            
+            .nav__list {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .header__contacts {
+                display: none;
+            }
+            
+            .burger {
+                display: flex;
+                z-index: 1000;
+            }
+            
+            .burger.active .burger__line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .burger.active .burger__line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .burger.active .burger__line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
             }
             
             .gazebo-highlight {
-                padding: 30px 20px;
+                padding: 20px;
             }
             
             .gazebo-highlight h3 {
-                font-size: 24px;
+                font-size: 22px;
             }
             
             .booking-content h2 {
@@ -599,14 +532,14 @@
                 text-align: center;
             }
         }
-
-        @media (max-width: 480px) {
-            .page-title {
-                font-size: 28px;
+        
+        @media (max-width: 576px) {
+            .section__title-main {
+                font-size: 24px;
             }
             
-            .section__title-main {
-                font-size: 28px;
+            .page-title {
+                font-size: 32px;
             }
             
             .services-grid {
@@ -614,301 +547,335 @@
             }
             
             .service-card {
-                padding: 20px;
+                padding: 15px;
             }
             
             .btn {
-                padding: 12px 25px;
+                padding: 10px 20px;
                 font-size: 14px;
+            }
+            
+            .gazebo-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 30px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader__inner">
+            <div class="preloader__logo">
+                <svg viewBox="0 0 200 50">
+                    <text x="0" y="35" class="preloader__text">Сибиряк</text>
+                </svg>
+            </div>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="header">
-        <div class="header__inner">
-            <a href="index.html" class="logo">
-                <span class="logo__text">Дом отдыха</span>
-                <span class="logo__text">Сибиряк</span>
-            </a>
-            
-            <nav class="nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
-                    <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
-                    <li class="nav__item"><a href="services.html" class="nav__link active">Услуги</a></li>
-                    <li class="nav__item"><a href="gallery.html" class="nav__link">Галерея</a></li>
-                    <li class="nav__item"><a href="contact.html" class="nav__link">Контакты</a></li>
-                </ul>
-            </nav>
-            
-            <div class="header__contacts">
-                <div class="contact-links">
-                    <a href="tel:+79083103616" class="phone">8 908 310 36 16</a>
+        <div class="container">
+            <div class="header__inner">
+                <a href="index.html" class="logo">
+                    <span class="logo__text">Дом отдыха</span>
+                    <span class="logo__text">Сибиряк</span>
+                </a>
+                
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">О нас</a></li>
+                        <li class="nav__item"><a href="services.html" class="nav__link active">Услуги</a></li>
+                        <li class="nav__item"><a href="gallery.html" class="nav__link">Галерея</a></li>
+                        <li class="nav__item"><a href="contact.html" class="nav__link">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__contacts">
+                    <div class="contact-links">
+                        <a href="tel:+79083103616" class="phone">8 908 310 36 16</a>
+                        <a href="mailto:matvey.matveev.87@list.ru" class="email">matvey.matveev.87@list.ru</a>
+                    </div>
                 </div>
+                
+                <button class="burger" aria-label="Меню">
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                    <span class="burger__line"></span>
+                </button>
             </div>
-            
-            <button class="burger" aria-label="Меню">
-                <span class="burger__line"></span>
-                <span class="burger__line"></span>
-                <span class="burger__line"></span>
-            </button>
         </div>
     </header>
 
-    <!-- Основной контент -->
-    <main class="services-page">
-        <!-- Хедер страницы -->
-        <section class="page-header">
-            <div class="container">
-                <h1 class="page-title">Наши услуги</h1>
-                <p class="page-subtitle">Идеальное сочетание природы, комфорта и активного отдыха в Красноярке</p>
-            </div>
-        </section>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Наши услуги</h1>
+            <p class="page-subtitle">Идеальное сочетание природы, комфорта и активного отдыха в Красноярке</p>
+        </div>
+    </section>
 
-        <!-- Основные услуги (Размещение) -->
-        <section class="services-main section">
-            <div class="container">
-                <h2 class="section__title">
-                    <span class="section__title-sub">Размещение</span>
-                    <span class="section__title-main">Номера</span>
-                </h2>
-                
-                <div class="services-grid">
-                    <!-- Номера с питанием -->
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=🏠" alt="Стандарт">
-                        </div>
+    <!-- Основные услуги (Размещение) -->
+    <section class="section services-main">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__title-sub">Размещение</span>
+                <span class="section__title-main">Номера</span>
+            </h2>
+            
+            <div class="services-grid">
+                <!-- Номера с питанием -->
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:00:45.jpg" alt="3-местный Стандарт" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">3-местный "Стандарт" (с питанием)</h3>
-                        <div class="service-card__content">
-                            <p>Уютный номер для трех гостей с необходимыми удобствами</p>
-                            <ul class="service-features">
-                                <li>3 кровати</li>
-                                <li>Душ и туалет</li>
-                                <li>Тумба, стул, ТВ</li>
-                                <li>Полный пансион</li>
-                            </ul>
-                            <p class="service-price">2500 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Уютный номер для трех гостей с необходимыми удобствами</p>
+                        
+                        <ul class="service-features">
+                            <li>3 кровати</li>
+                            <li>Душ и туалет</li>
+                            <li>Тумба, стул, ТВ</li>
+                            <li>Полный пансион</li>
+                        </ul>
+                        
+                        <p class="service-price">2500 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=🏠" alt="Стандарт">
-                        </div>
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:00:45.jpg" alt="2-местный Стандарт" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">2-местный "Стандарт" (с питанием)</h3>
-                        <div class="service-card__content">
-                            <p>Комфортный номер для двоих с базовыми удобствами</p>
-                            <ul class="service-features">
-                                <li>2 кровати</li>
-                                <li>Душ и туалет</li>
-                                <li>Тумба, шкаф</li>
-                                <li>Полный пансион</li>
-                            </ul>
-                            <p class="service-price">3000 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Комфортный номер для двоих с базовыми удобствами</p>
+                        
+                        <ul class="service-features">
+                            <li>2 кровати</li>
+                            <li>Душ и туалет</li>
+                            <li>Тумба, шкаф</li>
+                            <li>Полный пансион</li>
+                        </ul>
+                        
+                        <p class="service-price">3000 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=⭐" alt="Улучшенный">
-                        </div>
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:01:43.jpg" alt="Улучшенный номер" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">2-местный "Улучшенный" (с питанием)</h3>
-                        <div class="service-card__content">
-                            <p>Просторный номер с повышенным комфортом</p>
-                            <ul class="service-features">
-                                <li>2 кровати</li>
-                                <li>Душ, туалет, ТВ</li>
-                                <li>Стол, прихожая</li>
-                                <li>Полный пансион</li>
-                            </ul>
-                            <p class="service-price">3500 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Просторный номер с повышенным комфортом</p>
+                        
+                        <ul class="service-features">
+                            <li>2 кровати</li>
+                            <li>Душ, туалет, ТВ</li>
+                            <li>Стол, прихожая</li>
+                            <li>Полный пансион</li>
+                        </ul>
+                        
+                        <p class="service-price">3500 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=👑" alt="Люкс">
-                        </div>
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:01:43.jpg" alt="Люкс" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">2-комнатный "Люкс" (с питанием)</h3>
-                        <div class="service-card__content">
-                            <p>Роскошный номер для романтического отдыха</p>
-                            <ul class="service-features">
-                                <li>Двуспальная кровать</li>
-                                <li>ТВ, холодильник</li>
-                                <li>Прихожая, стол</li>
-                                <li>Полный пансион</li>
-                            </ul>
-                            <p class="service-price">3700 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Роскошный номер для романтического отдыха</p>
+                        
+                        <ul class="service-features">
+                            <li>Двуспальная кровать</li>
+                            <li>ТВ, холодильник</li>
+                            <li>Прихожая, стол</li>
+                            <li>Полный пансион</li>
+                        </ul>
+                        
+                        <p class="service-price">3700 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
+                </div>
 
-                    <!-- Номера без питания -->
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=🏠" alt="Стандарт">
-                        </div>
+                <!-- Номера без питания -->
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:00:45.jpg" alt="3-местный Стандарт" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">3-местный "Стандарт" (без питания)</h3>
-                        <div class="service-card__content">
-                            <p>Уютный номер для трех гостей с необходимыми удобствами</p>
-                            <ul class="service-features">
-                                <li>3 кровати</li>
-                                <li>Душ и туалет</li>
-                                <li>Тумба, стул, ТВ</li>
-                                <li>Без питания</li>
-                            </ul>
-                            <p class="service-price">1000 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Уютный номер для трех гостей с необходимыми удобствами</p>
+                        
+                        <ul class="service-features">
+                            <li>3 кровати</li>
+                            <li>Душ и туалет</li>
+                            <li>Тумба, стул, ТВ</li>
+                            <li>Без питания</li>
+                        </ul>
+                        
+                        <p class="service-price">1000 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=🏠" alt="Стандарт">
-                        </div>
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:00:45.jpg" alt="2-местный Стандарт" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">2-местный "Стандарт" (без питания)</h3>
-                        <div class="service-card__content">
-                            <p>Комфортный номер для двоих с базовыми удобствами</p>
-                            <ul class="service-features">
-                                <li>2 кровати</li>
-                                <li>Душ и туалет</li>
-                                <li>Тумба, шкаф</li>
-                                <li>Без питания</li>
-                            </ul>
-                            <p class="service-price">1000 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Комфортный номер для двоих с базовыми удобствами</p>
+                        
+                        <ul class="service-features">
+                            <li>2 кровати</li>
+                            <li>Душ и туалет</li>
+                            <li>Тумба, шкаф</li>
+                            <li>Без питания</li>
+                        </ul>
+                        
+                        <p class="service-price">1000 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=⭐" alt="Улучшенный">
-                        </div>
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:01:43.jpg" alt="Улучшенный номер" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">2-местный "Улучшенный" (без питания)</h3>
-                        <div class="service-card__content">
-                            <p>Просторный номер с повышенным комфортом</p>
-                            <ul class="service-features">
-                                <li>2 кровати</li>
-                                <li>Душ, туалет, ТВ</li>
-                                <li>Стол, прихожая</li>
-                                <li>Без питания</li>
-                            </ul>
-                            <p class="service-price">1300 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Просторный номер с повышенным комфортом</p>
+                        
+                        <ul class="service-features">
+                            <li>2 кровати</li>
+                            <li>Душ, туалет, ТВ</li>
+                            <li>Стол, прихожая</li>
+                            <li>Без питания</li>
+                        </ul>
+                        
+                        <p class="service-price">1300 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <div class="service-card__icon">
-                            <img src="https://placehold.co/60x60/4F6B7F/FFFFFF/png?text=👑" alt="Люкс">
-                        </div>
+                <div class="service-card">
+                    <div class="service-card__media">
+                        <img src="img/IMAGE 2025-08-23 01:01:43.jpg" alt="Люкс" class="service-card__image">
+                    </div>
+                    <div class="service-card__content">
                         <h3 class="service-card__title">2-комнатный "Люкс" (без питания)</h3>
-                        <div class="service-card__content">
-                            <p>Роскошный номер для романтического отдыха</p>
-                            <ul class="service-features">
-                                <li>Двуспальная кровать</li>
-                                <li>ТВ, холодильник</li>
-                                <li>Прихожая, стол</li>
-                                <li>Без питания</li>
-                            </ul>
-                            <p class="service-price">1300 ₽/сутки с человека</p>
-                        </div>
+                        <p class="service-card__text">Роскошный номер для романтического отдыха</p>
+                        
+                        <ul class="service-features">
+                            <li>Двуспальная кровать</li>
+                            <li>ТВ, холодильник</li>
+                            <li>Прихожая, стол</li>
+                            <li>Без питания</li>
+                        </ul>
+                        
+                        <p class="service-price">1300 ₽/сутки с человека</p>
                         <a href="https://wa.me/89083103616" class="btn btn--primary">Забронировать</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Дополнительные услуги -->
-        <section class="services-extra section">
-            <div class="container">
-                <!-- Выделенный блок про беседки -->
-                <div class="gazebo-highlight">
-                    <div class="service-card__icon">
-                        <img src="https://placehold.co/80x80/28a745/FFFFFF/png?text=🏕️" alt="Беседка">
-                    </div>
-                    <h3>Аренда беседок для вечеринок</h3>
-                    <p>Организуйте незабываемые посиделки с друзьями или семьей в наших уютных беседках с барбекю! Идеально для пикников, праздников и отдыха на природе в живописной обстановке у реки Иртыш.</p>
-                    <p class="service-price">350 ₽/час (уточняйте условия аренды у администратора)</p>
-                    <a href="https://wa.me/89083103616" class="btn btn--success">Забронировать беседку</a>
+    <!-- Дополнительные услуги -->
+    <section class="section services-extra">
+        <div class="container">
+            <!-- Выделенный блок про беседки -->
+            <div class="gazebo-highlight">
+                <div class="gazebo-icon">🏕️</div>
+                <h3>Аренда беседок для вечеринок</h3>
+                <p>Организуйте незабываемые посиделки с друзьями или семьей в наших уютных беседках с барбекю! Идеально для пикников, праздников и отдыха на природе в живописной обстановке у реки Иртыш.</p>
+                <p class="service-price">350 ₽/час (уточняйте условия аренды у администратора)</p>
+                <a href="https://wa.me/89083103616" class="btn btn--success">Забронировать беседку</a>
+            </div>
+
+            <!-- Экстремальный отдых -->
+            <h2 class="section__title">
+                <span class="section__title-sub">Экстремальный отдых</span>
+                <span class="section__title-main">Активности на технике</span>
+            </h2>
+            <div class="extra-services">
+                <div class="extra-service">
+                    <h3>Квадроциклы</h3>
+                    <p>Катание по лесным тропам на мощных квадроциклах.</p>
+                    <p><a href="https://vk.com/pitbikeomskendurotravel" target="_blank">Подробности в нашей группе ВКонтакте</a></p>
                 </div>
-
-                <!-- Экстремальный отдых -->
-                <h2 class="section__title">
-                    <span class="section__title-sub">Экстремальный отдых</span>
-                    <span class="section__title-main">Активности на технике</span>
-                </h2>
-                <div class="extra-services">
-                    <div class="extra-service">
-                        <h3>Квадроциклы</h3>
-                        <p>Катание по лесным тропам на мощных квадроциклах.</p>
-                        <p><a href="https://vk.com/pitbikeomskendurotravel" target="_blank">Подробности в нашей группе ВКонтакте</a></p>
-                    </div>
-                    <div class="extra-service">
-                        <h3>Эндуро и питбайки</h3>
-                        <p>Экстремальные поездки по пересеченной местности.</p>
-                        <p><a href="https://vk.com/pitbikeomskendurotravel" target="_blank">Подробности в нашей группе ВКонтакте</a></p>
-                    </div>
-                </div>
-
-                <!-- Активный отдых -->
-                <h2 class="section__title" style="margin-top: 80px;">
-                    <span class="section__title-sub">Развлечения</span>
-                    <span class="section__title-main">Активный отдых</span>
-                </h2>
-                <div class="extra-services">
-                    <div class="extra-service">
-                        <h3>Свадьбы</h3>
-                        <p>Организация свадебных церемоний в живописной природной обстановке</p>
-                    </div>
-                    <div class="extra-service">
-                        <h3>Детские выезды</h3>
-                        <p>Организованные программы для детей с играми и мастер-классами</p>
-                    </div>
-                    <div class="extra-service">
-                        <h3>Теннис, баскетбол, волейбол</h3>
-                        <p>Спортивные площадки для активных игр и соревнований</p>
-                    </div>
-                    <div class="extra-service">
-                        <h3>Прогулки по лесу</h3>
-                        <p>Пешие маршруты по чистому сосновому лесу</p>
-                    </div>
-                    <div class="extra-service">
-                        <h3>Пикники у реки Иртыш</h3>
-                        <p>Отдых на берегу реки с мангалами и беседками</p>
-                    </div>
-                    <div class="extra-service">
-                        <h3>Велосипедные прогулки</h3>
-                        <p>Аренда велосипедов для прогулок по живописным маршрутам</p>
-                    </div>
-                    <div class="extra-service">
-                        <h3>Рыбалка на реке Иртыш</h3>
-                        <p>Спокойный отдых с удочкой на берегу реки</p>
-                    </div>
+                <div class="extra-service">
+                    <h3>Эндуро и питбайки</h3>
+                    <p>Экстремальные поездки по пересеченной местности.</p>
+                    <p><a href="https://vk.com/pitbikeomskendurotravel" target="_blank">Подробности в нашей группе ВКонтакте</a></p>
                 </div>
             </div>
-        </section>
 
-        <!-- Блок бронирования -->
-        <section class="services-booking section">
-            <div class="container">
-                <div class="booking-block">
-                    <div class="booking-content">
-                        <h2>Забронируйте отдых в Сибиряке</h2>
-                        <p>Свяжитесь с нами через WhatsApp, чтобы подобрать номер и активности для вашего отдыха в Красноярке!</p>
-                    </div>
-                    <a href="https://wa.me/89083103616" class="btn btn--primary">Оставить заявку</a>
+            <!-- Активный отдых -->
+            <h2 class="section__title" style="margin-top: 80px;">
+                <span class="section__title-sub">Развлечения</span>
+                <span class="section__title-main">Активный отдых</span>
+            </h2>
+            <div class="extra-services">
+                <div class="extra-service">
+                    <h3>Свадьбы</h3>
+                    <p>Организация свадебных церемоний в живописной природной обстановке</p>
+                </div>
+                <div class="extra-service">
+                    <h3>Детские выезды</h3>
+                    <p>Организованные программы для детей с играми и мастер-классами</p>
+                </div>
+                <div class="extra-service">
+                    <h3>Теннис, баскетбол, волейбол</h3>
+                    <p>Спортивные площадки для активных игр и соревнований</p>
+                </div>
+                <div class="extra-service">
+                    <h3>Прогулки по лесу</h3>
+                    <p>Пешие маршруты по чистому сосновому лесу</p>
+                </div>
+                <div class="extra-service">
+                    <h3>Пикники у реки Иртыш</h3>
+                    <p>Отдых на берегу реки с мангалами и беседками</p>
+                </div>
+                <div class="extra-service">
+                    <h3>Велосипедные прогулки</h3>
+                    <p>Аренда велосипедов для прогулок по живописным маршрутам</p>
+                </div>
+                <div class="extra-service">
+                    <h3>Рыбалка на реке Иртыш</h3>
+                    <p>Спокойный отдых с удочкой на берегу реки</p>
+                </div>
+                <div class="extra-service">
+                    <h3>Рыбалка на реке Иртыш</h3>
+                    <p>Спокойный отдых с удочкой на берегу реки</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Блок бронирования -->
+    <section class="services-booking section">
+        <div class="container">
+            <div class="booking-block">
+                <div class="booking-content">
+                    <h2>Забронируйте отдых в Сибиряке</h2>
+                    <p>Свяжитесь с нами через WhatsApp, чтобы подобрать номер и активности для вашего отдыха в Красноярке!</p>
+                </div>
+                <a href="https://wa.me/89083103616" class="btn btn--primary">Оставить заявку</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -981,13 +948,13 @@
 
     <script>
         // Sticky header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.preloader').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.preloader').style.display = 'none';
+                }, 500);
+            }, 1000);
         });
 
         // Burger menu functionality
