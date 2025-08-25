@@ -205,7 +205,7 @@
 
         /* Page Header - МАКСИМАЛЬНО БОЛЬШАЯ ФОТОГРАФИЯ */
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1000/4F6B7F/FFFFFF/png?text=Дом+отдыха+Сибиряк') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/IMAGE 2025-08-25 15:25:07.jpg') center/cover no-repeat;
             padding: 100px 0 80px;
             text-align: center;
             color: var(--white);
@@ -254,6 +254,7 @@
         /* About Story - УВЕЛИЧЕННЫЙ БЛОК ИСТОРИИ */
         .about-story {
             padding: 100px 0;
+            background-color: var(--white);
         }
         
         .about-story__inner {
@@ -284,17 +285,23 @@
             width: 100%;
             height: 500px;
             object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-story__image:hover img {
+            transform: scale(1.05);
         }
         
         .about-story__year {
             position: absolute;
             bottom: 30px;
             right: 30px;
-            background: var(--primary);
+            background: transparent;
             color: var(--white);
             padding: 20px;
             border-radius: 15px;
             text-align: center;
+            z-index: 2;
         }
         
         .about-story__year span:first-child {
@@ -309,7 +316,7 @@
 
         /* About Territory - УВЕЛИЧЕННЫЙ БЛОК ТЕРРИТОРИИ */
         .about-territory {
-            background: var(--white);
+            background: var(--light);
             padding: 100px 0;
         }
         
@@ -323,7 +330,7 @@
         .about-territory__item {
             text-align: center;
             padding: 40px 30px;
-            background: var(--light);
+            background: var(--white);
             border-radius: 20px;
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -360,7 +367,7 @@
 
         /* Quote Block - УВЕЛИЧЕННЫЙ БЛОК С ЦИТАТОЙ */
         .about-quote {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://placehold.co/1920x800/4F6B7F/FFFFFF/png?text=Природа+Сибири') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('img/IMAGE 2025-08-25 16:19:07.jpg') center/cover no-repeat;
             color: var(--white);
             text-align: center;
             padding: 120px 0;
@@ -381,109 +388,6 @@
         .quote-block footer {
             font-size: 20px;
             font-weight: 500;
-            color: var(--primary);
-        }
-
-        /* Footer */
-        .footer {
-            padding: 100px 0 0;
-            background-color: var(--dark);
-            color: white;
-        }
-
-        .footer__inner {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer__logo {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            display: inline-block;
-            color: var(--primary);
-        }
-
-        .footer__text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .footer__title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .footer__address {
-            font-style: normal;
-            margin-bottom: 15px;
-            font-size: 14px;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer__phone,
-        .footer__email {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            transition: var(--transition);
-        }
-
-        .footer__phone:hover,
-        .footer__email:hover {
-            color: var(--primary);
-        }
-
-        .footer__social {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .footer__social-link {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-        }
-
-        .footer__social-link:hover {
-            color: var(--primary);
-        }
-
-        .footer__social-link svg {
-            margin-right: 10px;
-        }
-
-        .footer__bottom {
-            padding: 30px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer__copyright {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .footer__policy {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-            transition: var(--transition);
-        }
-
-        .footer__policy:hover {
             color: var(--primary);
         }
 
@@ -510,7 +414,7 @@
         @media (max-width: 768px) {
             .page-header {
                 padding: 90px 0 60px;
-                min-height: 80vh;
+                min-height: 95vh;
             }
             
             .page-title {
@@ -579,9 +483,15 @@
             }
             
             .about-story__year {
-                bottom: 20px;
-                right: 20px;
-                padding: 15px;
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+                background: transparent; /* Changed from var(--primary) */
+                color: var(--white);
+                padding: 20px;
+                border-radius: 15px;
+                text-align: center;
+                z-index: 2;
             }
             
             .about-story__year span:first-child {
@@ -706,16 +616,14 @@
                             <span class="section__title-main">История</span>
                         </h2>
                         <div class="about-story__text">
-                            <p>Дом отдыха "Сибиряк" был основан в 2015 году с любовью к сибирской природе и желанием создать идеальное место для отдыха. Начав с нескольких уютных домиков, мы выросли в современную базу отдыха, сохранив при этом домашнюю атмосферу и индивидуальный подход к каждому гостю.</p>
-                            <p>Наша философия - это гармония комфорта и природы. Мы создали место, где современные удобства сочетаются с нетронутой красотой сибирского леса и реки Иртыш. Каждый год мы улучшаем нашу инфраструктуру, чтобы ваш отдых становился еще комфортнее.</p>
-                            <p>Сегодня "Сибиряк" - это не просто база отдыха, а целый комплекс для качественного времяпрепровождения: уютные номера, беседки для пикников, спортивные площадки и множество развлечений на природе.</p>
+                            <p>База отдыха "Сибиряк" имеет богатую историю, уходящую корнями в 1928 год. На территории Омской области расположен курортный поселок Красноярка - одно из самых любимых мест отдыха омичей и многих россиян. Среди чистой природы соснового леса, целебного воздуха и богатой инфраструктуры располагается наша база отдыха.</p>
+                            <p>Благодаря круглогодичному размещению и наличию всего необходимого для полноценного отдыха, наша база является отличным местом для отпуска в кругу семьи и компании друзей. Дом отдыха располагается в непосредственной близости к реке Иртыш, что позволяет гостям заняться не только развлекательной, но и оздоровительной программой.</p>
+                            <p>Сегодня "Сибиряк" предлагает комфортабельные номера в корпусе, столовую с трехразовым питанием, мангальные беседки для летних вечеров с прокатом всего необходимого для приготовления барбекю и шашлыка. На территории имеются спортивные площадки для тенниса, баскетбола, волейбола и детская площадка. Также гости могут насладиться летней танцевальной площадкой, фонтаном и другими удобствами.</p>
                         </div>
                     </div>
                     <div class="about-story__image">
-                        <img src="https://placehold.co/600x500/4F6B7F/FFFFFF/png?text=История+Сибиряка" alt="История нашей базы отдыха">
+                        <img src="img/IMAGE 2025-08-25 15:34:33.jpg" alt="История нашей базы отдыха">
                         <div class="about-story__year">
-                            <span>2015</span>
-                            <span>Основание</span>
                         </div>
                     </div>
                 </div>
@@ -733,14 +641,8 @@
                 <div class="about-territory__grid">
                     <div class="about-territory__item">
                         <div class="about-territory__icon">🌲</div>
-                        <h3>5 гектаров</h3>
+                        <h3>Террритория</h3>
                         <p>Собственный сосновый бор и охраняемая территория с вековыми деревьями</p>
-                    </div>
-                    
-                    <div class="about-territory__item">
-                        <div class="about-territory__icon">🏞️</div>
-                        <h3>200 метров</h3>
-                        <p>Собственный выход к реке Иртыш с оборудованным песчаным пляжем</p>
                     </div>
                     
                     <div class="about-territory__item">
@@ -776,21 +678,21 @@
                 
                 <div class="footer__col">
                     <a href="index.html" class="footer__logo">Сибиряк</a>
-                    <p class="footer__text">База отдыха в сосновом бору на берегу реки Иртыш для тех, кто ценит природу и комфорт.</p>
+                    <p class="footer__text">База отдыха в сосновом бору для тех, кто ценит природу и комфорт.</p>
                 </div>
 
                 <div class="footer__col">
                     <h3 class="footer__title">Разработчик</h3>
                     <div class="footer__social">
-                        <a href="https://github.com/pypynyaa" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 极.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                        <a href="https://github.com/pypynyaa" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display: block; margin-bottom: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;vertical-align:middle;">
+                                <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
                             </svg>
                             GitHub
                         </a>
-                        <a href="https://t.me/pypynyaa" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3极15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+                        <a href="https://t.me/pypynyaa" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display: block;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;vertical-align:middle;">
+                                <path fill="currentColor" d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
                             </svg>
                             Telegram
                         </a>
@@ -810,21 +712,21 @@
                 <div class="footer__col">
                     <h3 class="footer__title">Мы в соцсетях</h3>
                     <div class="footer__social">
-                        <a href="https://vk.com/sibyriak" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
+                        <a href="https://vk.com/sibyriak" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
                                 <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 15.5L7 11h2.5L11 14.5 14.5 7H17L12 17.5z"/>
                             </svg>
                             ВКонтакте
                         </a>
-                        <a href="https://wa.me/79083103616" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.极6c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27z"/>
+                        <a href="https://wa.me/+79083103616" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
+                                <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27z"/>
                             </svg>
                             WhatsApp
                         </a>
                         <a href="mailto:matvey.matveev.87@list.ru" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c极 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5l-8-5h16zm0 12H4V8l8 5l8-5v10z"/>
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
+                                <path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5l-8-5h16zm0 12H4V8l8 5l8-5v10z"/>
                             </svg>
                             Почта
                         </a>
@@ -845,10 +747,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-video/2.0.0/lg-video.min.js"></script>
     <script src="js/app.js"></script>
-    <script>
-        
-        // Burger menu
-        
-    </script>
 </body>
 </html>

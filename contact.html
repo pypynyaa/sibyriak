@@ -112,7 +112,7 @@
             text-align: center;
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/IMAGE 2025-08-23 00:55:41.jpg') center/cover no-repeat;
             color: var(--white);
-            min-height: 70vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -296,18 +296,12 @@
         }
         
         .faq-item.active .faq-question svg {
-            transform: rotate(180deg);
             stroke: var(--primary);
         }
         
         .faq-answer {
-            max-height: 0;
+            height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 500px;
         }
         
         .faq-answer-content {
@@ -566,13 +560,11 @@
             transition: var(--transition);
         }
 
-        
-
         /* Media Queries */
         @media (max-width: 768px) {
             .page-header {
                 padding: 90px 0 60px;
-                min-height: 80vh;
+                min-height: 95vh;
             }
             
             .page-title {
@@ -619,7 +611,7 @@
                 height: 100vh;
                 background: var(--white);
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-                transition: right 极.3s ease;
+                transition: right 0.3s ease;
                 z-index: 999;
                 padding: 80px 20px 20px;
             }
@@ -807,7 +799,7 @@
         <section class="section contact-faq">
             <div class="container">
                 <h2 class="section__title">
-                    <span class="section__极title-sub">Частые</span>
+                    <span class="section__title-sub">Частые</span>
                     <span class="section__title-main">Вопросы</span>
                 </h2>
                 
@@ -874,7 +866,7 @@
                                 <p>Скидки в размере 20% предоставляются:</p>
                                 <ul>
                                     <li>Пенсионерам</li>
-                                    <li>Членам профсоюзныз организаций</li>
+                                    <li>Членам профсоюзных организаций</li>
                                     <li>Ветеранам и участникам боевых действий</li>
                                 </ul>
                             </div>
@@ -942,7 +934,7 @@
                     <div class="footer__social">
                         <a href="https://vk.com/sibyriak" target="_blank" rel="noopener noreferrer" class="footer__social-link">
                             <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
-                                <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 15.5L7 11h2.5L11 14.5 14.5 7H17L12 17.5z"/>
+                                <path fillēr="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 15.5L7 11h2.5L11 14.5 14.5 7H17L12 17.5z"/>
                             </svg>
                             ВКонтакте
                         </a>
@@ -975,7 +967,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-video/2.0.0/lg-video.min.js"></script>
     <script src="js/app.js"></script>
-    
+    <script>
+        // Burger menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const burger = document.querySelector('.burger');
+            const nav = document.querySelector('.nav');
+            
+            burger.addEventListener('click', function() {
+                burger.classList.toggle('active');
+                nav.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            });
 
+            // FAQ Accordion with GSAP
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    const faqAnswer = faqItem.querySelector('.faq-answer');
+                    const svg = question.querySelector('svg');
+                    const isActive = faqItem.classList.contains('active');
+
+                    // Close all other FAQ items
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        if (item !== faqItem && item.classList.contains('active')) {
+                            const otherAnswer = item.querySelector('.faq-answer');
+                            const otherSvg = item.querySelector('svg');
+                            item.classList.remove('active');
+                            gsap.to(otherAnswer, {
+                                height: 0,
+                                opacity: 0,
+                                duration: 0.4,
+                                ease: 'power2.out'
+                            });
+                            gsap.to(otherSvg, {
+                                rotation: 0,
+                                duration: 0.4,
+                                ease: 'power2.out'
+                            });
+                        }
+                    });
+
+                    // Toggle the clicked FAQ item
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                        gsap.to(faqAnswer, {
+                            height: 'auto',
+                            opacity: 1,
+                            duration: 0.4,
+                            ease: 'power2.out'
+                        });
+                        gsap.to(svg, {
+                            rotation: 180,
+                            duration: 0.4,
+                            ease: 'power2.out'
+                        });
+                    } else {
+                        faqItem.classList.remove('active');
+                        gsap.to(faqAnswer, {
+                            height: 0,
+                            opacity: 0,
+                            duration: 0.4,
+                            ease: 'power2.out'
+                        });
+                        gsap.to(svg, {
+                            rotation: 0,
+                            duration: 0.4,
+                            ease: 'power2.out'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

@@ -209,7 +209,7 @@
             padding: 100px 0 80px;
             text-align: center;
             color: var(--white);
-            min-height: 90vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -510,7 +510,7 @@
         @media (max-width: 768px) {
             .page-header {
                 padding: 90px 0 60px;
-                min-height: 80vh;
+                min-height: 95vh;
             }
             
             .page-title {
@@ -851,58 +851,6 @@
                         </div>
                     </a>
                 </div>
-
-                <div class="gallery-load-more" data-aos="fade-up">
-                    <button class="btn btn--outline" id="loadMore">Показать еще</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Gallery -->
-        <section class="video-gallery section">
-            <div class="container">
-                <h2 class="section__title" data-aos="fade-up">
-                    <span class="section__title-sub">Видео</span>
-                    <span class="section__title-main">Экскурсия по курорту</span>
-                </h2>
-                
-                <div class="video-grid">
-                    <div class="video-item" data-aos="fade-up">
-                        <a href="https://www.youtube.com/watch?v=EXAMPLE1" class="video-thumbnail" data-lg-size="1280-720">
-                            <img src="img/gallery/video-1-thumb.jpg" alt="Обзор курорта">
-                            <div class="play-button">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </a>
-                        <h3>Обзор курорта</h3>
-                    </div>
-                    
-                    <div class="video-item" data-aos="fade-up" data-aos-delay="100">
-                        <a href="https://www.youtube.com/watch?v=EXAMPLE2" class="video-thumbnail" data-lg-size="1280-720">
-                            <img src="img/gallery/video-2-thumb.jpg" alt="SPA-комплекс">
-                            <div class="play-button">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </a>
-                        <h3>SPA-комплекс</h3>
-                    </div>
-                    
-                    <div class="video-item" data-aos="fade-up" data-aos-delay="200">
-                        <a href="https://www.youtube.com/watch?v=EXAMPLE3" class="video-thumbnail" data-lg-size="1280-720">
-                            <img src="img/gallery/video-3-thumb.jpg" alt="Гастрономия">
-                            <div class="play-button">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                        </a>
-                        <h3>Гастрономия</h3>
-                    </div>
-                </div>
             </div>
         </section>
     </main>
@@ -1023,16 +971,6 @@
                     });
                 });
             });
-
-            // Кнопка "Показать еще"
-            const loadMoreBtn = document.getElementById('loadMore');
-            if (loadMoreBtn) {
-                loadMoreBtn.addEventListener('click', function() {
-                    // Здесь можно добавить логику загрузки дополнительных изображений
-                    this.textContent = 'Все изображения загружены';
-                    this.disabled = true;
-                });
-            }
         });
     </script>
 </body>
