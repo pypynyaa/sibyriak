@@ -200,13 +200,14 @@
         .burger {
             display: none;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             width: 30px;
             height: 20px;
             background: transparent;
             border: none;
             cursor: pointer;
             padding: 0;
+            position: relative;
         }
         
         .burger__line {
@@ -216,25 +217,32 @@
             transition: var(--transition);
         }
         
-        /* Page header */
+        /* Page header - увеличенная высота */
         .page-header {
-            padding: 300px 100px 150px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x1000/4F6B7F/FFFFFF/png?text=Дом+отдыха+Сибиряк') center/cover no-repeat;
+            padding: 100px 0 80px;
             text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/IMAGE 2025-08-23 00:55:41.jpg') center/cover no-repeat;
             color: var(--white);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 0;
         }
         
         .page-title {
-            font-size: 48px;
+            font-size: 60px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
         }
         
         .page-subtitle {
-            font-size: 18px;
+            font-size: 22px;
             opacity: 0.9;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            line-height: 1.6;
         }
         
         /* Services Grid */
@@ -461,11 +469,16 @@
             }
             
             .page-header {
-                padding: 130px 0 60px;
+                padding: 90px 0 60px;
+                min-height: 80vh;
             }
             
             .page-title {
                 font-size: 36px;
+            }
+            
+            .page-subtitle {
+                font-size: 18px;
             }
             
             .section__title-main {
@@ -503,16 +516,12 @@
                 z-index: 1000;
             }
             
-            .burger.active .burger__line:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
+            .burger.active .burger__line {
+                transform: rotate(45deg);
             }
             
-            .burger.active .burger__line:nth-child(2) {
-                opacity: 0;
-            }
-            
-            .burger.active .burger__line:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
+            .burger.active .burger__line:before {
+                transform: rotate(-90deg) translateX(-10px);
             }
             
             .gazebo-highlight {
@@ -527,38 +536,56 @@
                 font-size: 28px;
             }
             
-            .footer__inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
         }
         
-        @media (max-width: 576px) {
-            .section__title-main {
-                font-size: 24px;
-            }
-            
+        @media (max-width: 480px) {
             .page-title {
                 font-size: 32px;
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
+            .page-header {
+                padding: 80px 0 50px;
+                min-height: 70vh;
             }
             
-            .service-card {
-                padding: 15px;
+            .section {
+                padding: 60px 0;
             }
             
-            .btn {
-                padding: 10px 20px;
-                font-size: 14px;
+            .section__title-main {
+                font-size: 28px;
             }
             
-            .gazebo-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 30px;
+            .about-story__text {
+                font-size: 16px;
+            }
+            
+            .about-story__image img {
+                height: 300px;
+            }
+            
+            .about-story__year {
+                bottom: 15px;
+                right: 15px;
+                padding: 12px;
+            }
+            
+            .about-story__year span:first-child {
+                font-size: 24px;
+            }
+            
+            .quote-block p {
+                font-size: 22px;
+            }
+            
+            .about-territory__item {
+                padding: 30px 20px;
+            }
+            
+            .about-territory__icon {
+                width: 80px;
+                height: 80px;
+                font-size: 32px;
             }
         }
     </style>
@@ -602,8 +629,6 @@
                 </div>
                 
                 <button class="burger" aria-label="Меню">
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
                     <span class="burger__line"></span>
                 </button>
             </div>
@@ -881,22 +906,23 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
+                
                 <div class="footer__col">
                     <a href="index.html" class="footer__logo">Сибиряк</a>
-                    <p class="footer__text">База отдыха в сосновом бору на берегу реки Иртыш для тех, кто ценит природу и комфорт.</p>
+                    <p class="footer__text">База отдыха в сосновом бору для тех, кто ценит природу и комфорт.</p>
                 </div>
 
                 <div class="footer__col">
                     <h3 class="footer__title">Разработчик</h3>
                     <div class="footer__social">
-                        <a href="https://github.com/pypynyaa" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
+                        <a href="https://github.com/pypynyaa" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display: block; margin-bottom: 8px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;vertical-align:middle;">
                                 <path fill="currentColor" d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
                             </svg>
                             GitHub
                         </a>
-                        <a href="https://t.me/pypynyaa" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
+                        <a href="https://t.me/pypynyaa" target="_blank" rel="noopener noreferrer" class="footer__social-link" style="display: block;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right:8px;vertical-align:middle;">
                                 <path fill="currentColor" d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
                             </svg>
                             Telegram
@@ -917,21 +943,21 @@
                 <div class="footer__col">
                     <h3 class="footer__title">Мы в соцсетях</h3>
                     <div class="footer__social">
-                        <a href="https://vk.com/sibyriak" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
+                        <a href="https://vk.com/sibyriak" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
                                 <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1.5 15.5L7 11h2.5L11 14.5 14.5 7H17L12 17.5z"/>
                             </svg>
                             ВКонтакте
                         </a>
-                        <a href="https://wa.me/79083103616" target="_blank" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
+                        <a href="https://wa.me/+79083103616" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
                                 <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27z"/>
                             </svg>
                             WhatsApp
                         </a>
                         <a href="mailto:matvey.matveev.87@list.ru" class="footer__social-link">
-                            <svg width="20" height="20" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5l8-5v10z"/>
+                            <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
+                                <path fill="currentColor" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5l-8-5h16zm0 12H4V8l8 5l8-5v10z"/>
                             </svg>
                             Почта
                         </a>
@@ -946,46 +972,11 @@
         </div>
     </footer>
 
-    <script>
-        // Sticky header
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.querySelector('.preloader').style.opacity = '0';
-                setTimeout(function() {
-                    document.querySelector('.preloader').style.display = 'none';
-                }, 500);
-            }, 1000);
-        });
-
-        // Burger menu functionality
-        const burger = document.querySelector('.burger');
-        const nav = document.querySelector('.nav');
-
-        burger.addEventListener('click', function() {
-            this.classList.toggle('active');
-            nav.classList.toggle('active');
-            document.body.classList.toggle('no-scroll');
-        });
-
-        // Close menu when clicking on links
-        document.querySelectorAll('.nav__link').forEach(link => {
-            link.addEventListener('click', function() {
-                burger.classList.remove('active');
-                nav.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (nav.classList.contains('active') && 
-                !nav.contains(e.target) && 
-                !burger.contains(e.target)) {
-                burger.classList.remove('active');
-                nav.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            }
-        });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-video/2.0.0/lg-video.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

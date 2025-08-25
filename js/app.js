@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.style.overflow = 'auto';
             }
         });
+    
 
         // Фолбэк на случай быстрой загрузки
         setTimeout(function() {
@@ -247,4 +248,15 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.paddingTop = `${header.offsetHeight}px`;
         }
     }, 300);
+
+            function checkScroll() {
+            const elements = document.querySelectorAll('.contact-info__card, .faq-item, .section__title');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                if (position.top < window.innerHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
 });
