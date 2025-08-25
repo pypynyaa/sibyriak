@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Галерея | Дом отдыха Сибиряк</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-zoom.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lg-thumbnail.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
         :root {
@@ -18,14 +21,16 @@
             --black: #333333;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --success: #28a745;
+            --success-dark: #218838;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Montserrat', sans-serif;
             line-height: 1.6;
@@ -33,62 +38,29 @@
             background-color: var(--light);
             overflow-x: hidden;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        ul {
-            list-style: none;
-        }
-        
+
         img {
             max-width: 100%;
             height: auto;
             display: block;
         }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            gap: 10px;
-        }
-        
-        .btn--primary {
-            background: var(--primary);
-            color: var(--white);
-        }
-        
-        .btn--primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-        
+
         .section {
             padding: 80px 0;
         }
-        
+
         .section__title {
             text-align: center;
             margin-bottom: 50px;
         }
-        
+
         .section__title-sub {
             display: block;
             font-size: 18px;
@@ -97,7 +69,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        
+
         .section__title-main {
             display: block;
             font-size: 36px;
@@ -105,7 +77,7 @@
             color: var(--dark);
         }
 
-        /* Header */
+        /* Header styles */
         .header {
             position: fixed;
             top: 0;
@@ -117,40 +89,40 @@
             padding: 15px 0;
             transition: var(--transition);
         }
-        
+
         .header__inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        
+
         .logo {
             display: flex;
             flex-direction: column;
             font-weight: 700;
             color: var(--dark);
         }
-        
+
         .logo__text:first-child {
             font-size: 14px;
             color: var(--primary);
         }
-        
+
         .logo__text:last-child {
             font-size: 22px;
         }
-        
+
         .nav__list {
             display: flex;
             gap: 30px;
         }
-        
+
         .nav__link {
             font-weight: 500;
             transition: var(--transition);
             position: relative;
         }
-        
+
         .nav__link:after {
             content: '';
             position: absolute;
@@ -161,28 +133,28 @@
             background: var(--primary);
             transition: var(--transition);
         }
-        
+
         .nav__link:hover:after,
         .nav__link.active:after {
             width: 100%;
         }
-        
+
         .header__contacts {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
         }
-        
+
         .contact-links a {
             display: block;
             font-size: 14px;
             transition: var(--transition);
         }
-        
+
         .contact-links a:hover {
             color: var(--primary);
         }
-        
+
         .burger {
             display: none;
             flex-direction: column;
@@ -195,7 +167,7 @@
             padding: 0;
             position: relative;
         }
-        
+
         .burger__line {
             width: 100%;
             height: 2px;
@@ -203,9 +175,9 @@
             transition: var(--transition);
         }
 
-        /* Page Header - МАКСИМАЛЬНО БОЛЬШАЯ ФОТОГРАФИЯ */
+        /* Page header */
         .page-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/IMAGE 2025-08-25 18:24:48.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/IMAGE 2025-08-25 18:25:21.jpg') center/cover no-repeat;
             padding: 100px 0 80px;
             text-align: center;
             color: var(--white);
@@ -215,14 +187,14 @@
             justify-content: center;
             margin-top: 0;
         }
-        
+
         .page-title {
             font-size: 60px;
             font-weight: 700;
             margin-bottom: 25px;
             text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
         }
-        
+
         .page-subtitle {
             font-size: 22px;
             opacity: 0.9;
@@ -231,193 +203,150 @@
             line-height: 1.6;
         }
 
-        /* Breadcrumbs */
-        .breadcrumbs {
-            margin-bottom: 30px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .breadcrumbs a {
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        .breadcrumbs a:hover {
-            color: var(--primary-dark);
-        }
-        
-        .breadcrumbs span {
-            color: rgba(255, 255, 255, 0.6);
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-auto-rows: 240px; /* Square aspect ratio */
+            grid-auto-flow: dense;
+            gap: 15px;
+            margin: 40px 0;
         }
 
-        /* About Story - УВЕЛИЧЕННЫЙ БЛОК ИСТОРИИ */
-        .about-story {
-            padding: 100px 0;
-        }
-        
-        .about-story__inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .about-story__text {
-            line-height: 1.8;
-            margin-bottom: 40px;
-            font-size: 18px;
-        }
-        
-        .about-story__text p {
-            margin-bottom: 25px;
-        }
-        
-        .about-story__image {
+        .gallery-item {
             position: relative;
-            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-        }
-        
-        .about-story__image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-        
-        .about-story__year {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary);
-            color: var(--white);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-        }
-        
-        .about-story__year span:first-child {
-            display: block;
-            font-size: 32px;
-            font-weight: 700;
-        }
-        
-        .about-story__year span:last-child {
-            font-size: 16px;
-        }
-
-        /* About Territory - УВЕЛИЧЕННЫЙ БЛОК ТЕРРИТОРИИ */
-        .about-territory {
-            background: var(--white);
-            padding: 100px 0;
-        }
-        
-        .about-territory__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-        
-        .about-territory__item {
-            text-align: center;
-            padding: 40px 30px;
-            background: var(--light);
-            border-radius: 20px;
+            border-radius: 10px;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1 / 1; /* Enforce square shape */
         }
-        
-        .about-territory__item:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+        .gallery-item.wide {
+            grid-column: span 2;
         }
-        
-        .about-territory__icon {
-            width: 100px;
-            height: 100px;
-            background: rgba(193, 154, 107, 0.1);
+
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            aspect-ratio: 1 / 1; /* Enforce square shape */
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item__caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 10px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item__caption {
+            opacity: 1;
+        }
+
+        /* LightGallery custom styles */
+        .lg-backdrop {
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+        }
+
+        .lg-outer {
+            z-index: 1002;
+        }
+
+        .lg-close.lg-icon {
+            background-color: var(--primary);
             border-radius: 50%;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 25px;
-            font-size: 40px;
-        }
-        
-        .about-territory__item h3 {
+            top: 10px;
+            right: 10px;
             font-size: 24px;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .about-territory__item p {
-            color: var(--gray);
-            font-size: 16px;
-            line-height: 1.6;
         }
 
-        /* Quote Block - УВЕЛИЧЕННЫЙ БЛОК С ЦИТАТОЙ */
-        .about-quote {
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://placehold.co/1920x800/4F6B7F/FFFFFF/png?text=Природа+Сибири') center/cover no-repeat;
-            color: var(--white);
-            text-align: center;
-            padding: 120px 0;
-        }
-        
-        .quote-block {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .quote-block p {
-            font-size: 28px;
-            font-style: italic;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        
-        .quote-block footer {
-            font-size: 20px;
-            font-weight: 500;
-            color: var(--primary);
+        .lg-close.lg-icon:hover {
+            background-color: var(--primary-dark);
         }
 
-        /* Media Queries */
+        .lg-prev, .lg-next {
+            background-color: var(--primary);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .lg-prev:hover, .lg-next:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .about-story__inner {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-            
-            .about-story__image {
-                order: -1;
-            }
-            
             .section__title-main {
                 font-size: 32px;
             }
-            
-            .page-title {
-                font-size: 48px;
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                grid-auto-rows: 200px;
+            }
+
+            .gallery-item.wide {
+                grid-column: span 1;
+            }
+
+            .gallery-item.tall {
+                grid-row: span 1;
             }
         }
-        
+
         @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+
             .page-header {
                 padding: 90px 0 60px;
                 min-height: 95vh;
             }
-            
+
             .page-title {
                 font-size: 36px;
             }
-            
+
             .page-subtitle {
                 font-size: 18px;
             }
-            
+
             .nav {
                 position: fixed;
                 top: 0;
@@ -430,110 +359,51 @@
                 z-index: 999;
                 padding: 80px 20px 20px;
             }
-            
+
             .nav.active {
                 right: 0;
             }
-            
+
             .nav__list {
                 flex-direction: column;
                 gap: 20px;
             }
-            
+
             .header__contacts {
                 display: none;
             }
-            
+
             .burger {
                 display: flex;
                 z-index: 1000;
             }
-            
+
             .burger.active .burger__line {
                 transform: rotate(45deg);
             }
-            
-            .about-territory__grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer__inner {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer__bottom {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .about-story {
-                padding: 70px 0;
-            }
-            
-            .about-story__image img {
-                height: 400px;
-            }
-            
-            .about-story__year {
-                bottom: 20px;
-                right: 20px;
-                padding: 15px;
-            }
-            
-            .about-story__year span:first-child {
-                font-size: 28px;
+
+            .burger.active .burger__line:before {
+                transform: rotate(-90deg) translateX(-10px);
             }
         }
-        
+
         @media (max-width: 480px) {
             .page-title {
                 font-size: 32px;
             }
-            
+
             .page-header {
                 padding: 80px 0 50px;
                 min-height: 90vh;
             }
-            
-            .section {
-                padding: 60px 0;
-            }
-            
+
             .section__title-main {
                 font-size: 28px;
             }
-            
-            .about-story__text {
-                font-size: 16px;
-            }
-            
-            .about-story__image img {
-                height: 300px;
-            }
-            
-            .about-story__year {
-                bottom: 15px;
-                right: 15px;
-                padding: 12px;
-            }
-            
-            .about-story__year span:first-child {
-                font-size: 24px;
-            }
-            
-            .quote-block p {
-                font-size: 22px;
-            }
-            
-            .about-territory__item {
-                padding: 30px 20px;
-            }
-            
-            .about-territory__icon {
-                width: 80px;
-                height: 80px;
-                font-size: 32px;
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-auto-rows: 150px;
             }
         }
     </style>
@@ -558,7 +428,7 @@
                     <span class="logo__text">Дом отдыха</span>
                     <span class="logo__text">Сибиряк</span>
                 </a>
-                
+
                 <nav class="nav">
                     <ul class="nav__list">
                         <li class="nav__item"><a href="index.html" class="nav__link">Главная</a></li>
@@ -568,11 +438,14 @@
                         <li class="nav__item"><a href="contact.html" class="nav__link">Контакты</a></li>
                     </ul>
                 </nav>
-                
+
                 <div class="header__contacts">
-                    <a href="tel:+78005553535" class="phone">8 800 555 35 35</a>
+                    <div class="contact-links">
+                        <a href="tel:+79083103616" class="phone">8 908 310 36 16</a>
+                        <a href="mailto:matvey.matveev.87@list.ru" class="email">matvey.matveev.87@list.ru</a>
+                    </div>
                 </div>
-                
+
                 <button class="burger" aria-label="Меню">
                     <span class="burger__line"></span>
                 </button>
@@ -580,186 +453,179 @@
         </div>
     </header>
 
+    <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1 class="page-title" data-aos="fade-up">Галерея</h1>
-            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">Вдохновитесь атмосферой нашего курорта</p>
+            <h1 class="page-title">Галерея</h1>
+            <p class="page-subtitle">Ознакомьтесь с красотой дома отдыха Сибиряк и природой Красноярки</p>
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="gallery-page">
-
-        <!-- Gallery Filters -->
-        <section class="gallery-filters section">
-            <div class="container">
-                <div class="filter-buttons" data-aos="fade-up">
-                    <button class="filter-btn active" data-filter="all">Все</button>
-                    <button class="filter-btn" data-filter="villas">Номера</button>
-                    <button class="filter-btn" data-filter="nature">Природа</button>
-                    <button class="filter-btn" data-filter="restaurant">Другое</button>
-                    <button class="filter-btn" data-filter="activities">Активности</button>
-                    <button class="filter-btn" data-filter="activities">История</button>
-                </div>
+    <!-- Rooms Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__title-sub">Размещение</span>
+                <span class="section__title-main">Номера</span>
+            </h2>
+            <div class="gallery-grid" id="lightgallery-rooms">
+                <a href="img/IMAGE 2025-08-25 19:05:15.jpg" class="gallery-item tall">
+                    <img src="img/IMAGE 2025-08-25 19:05:15.jpg" alt="3-местный Стандарт">
+                </a>
+                <a href="img/IMAGE 2025-08-25 19:05:43.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 19:05:43.jpg" alt="2-местный Стандарт">
+                </a>
+                <a href="img/IMAGE 2025-08-25 19:06:12.jpg" class="gallery-item wide">
+                    <img src="img/IMAGE 2025-08-25 19:06:12.jpg" alt="Улучшенный номер">
+                </a>
+                <a href="img/IMAGE 2025-08-25 19:06:35.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 19:06:35.jpg" alt="2-комнатный Люкс">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:33:02.jpg" class="gallery-item wide">
+                    <img src="img/IMAGE 2025-08-25 21:33:02.jpg" alt="Номер 5">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:34:01.jpg" class="gallery-item tall">
+                    <img src="img/IMAGE 2025-08-25 21:34:01.jpg" alt="Номер 6">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:34:19.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 21:34:19.jpg" alt="Номер 7">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:34:40.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 21:34:40.jpg" alt="Номер 8">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:35:02.jpg" class="gallery-item tall">
+                    <img src="img/IMAGE 2025-08-25 21:35:02.jpg" alt="Номер 9">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:35:35.jpg" class="gallery-item wide">
+                    <img src="img/IMAGE 2025-08-25 21:35:35.jpg" alt="Номер 10">
+                </a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Main Gallery -->
-        <section class="main-gallery section">
-            <div class="container">
-                <div class="gallery-grid" id="lightgallery">
-                    <!-- Villa 1 -->
-                    <a href="./img/gallery/villa-1-large.jpg" class="gallery-item" data-aos="fade-up" data-category="villas" data-sub-html="<h4>Villa Serenity</h4><p>Роскошная вилла с панорамными окнами</p>">
-                        <img src="img/gallery/villa-1-thumb.jpg" alt="Villa Serenity">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Villa Serenity</h3>
-                            <p>Роскошная вилла с панорамными окнами</p>
-                        </div>
-                    </a>
-
-                    <!-- Nature 1 -->
-                    <a href="img/gallery/nature-1-large.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="100" data-category="nature" data-sub-html="<h4>Озеро на рассвете</h4><p>Вид на наше частное озеро ранним утром</p>">
-                        <img src="img/gallery/nature-1-thumb.jpg" alt="Озеро на рассвете">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Озеро на рассвете</h3>
-                            <p>Вид на наше частное озеро ранним утром</p>
-                        </div>
-                    </a>
-
-                    <!-- SPA 1 -->
-                    <a href="img/gallery/spa-1-large.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="200" data-category="spa" data-sub-html="<h4>SPA-комплекс</h4><p>Наш премиальный SPA с бассейном</p>">
-                        <img src="img/gallery/spa-1-thumb.jpg" alt="SPA-комплекс">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>SPA-комплекс</h3>
-                            <p>Наш премиальный SPA с бассейном</p>
-                        </div>
-                    </a>
-
-                    <!-- Restaurant 1 -->
-                    <a href="img/gallery/restaurant-1-large.jpg" class="gallery-item" data-aos="fade-up" data-category="restaurant" data-sub-html="<h4>Главный ресторан</h4><p>Авторская кухня от шеф-повара</p>">
-                        <img src="img/gallery/restaurant-1-thumb.jpg" alt="Главный ресторан">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Главный ресторан</h3>
-                            <p>Авторская кухня от шеф-повара</p>
-                        </div>
-                    </a>
-
-                    <!-- Activities 1 -->
-                    <a href="img/gallery/activities-1-large.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="100" data-category="activities" data-sub-html="<h4>Прогулка на яхте</h4><p>Частная яхта для наших гостей</p>">
-                        <img src="img/gallery/activities-1-thumb.jpg" alt="Прогулка на яхте">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Прогулка на яхте</h3>
-                            <p>Частная яхта для наших гостей</p>
-                        </div>
-                    </a>
-
-                    <!-- Villa 2 -->
-                    <a href="img/gallery/villa-2-large.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="200" data-category="villas" data-sub-html="<h4>Villa Harmony</h4><p>Уютная вилла с частным бассейном</p>">
-                        <img src="img/gallery/villa-2-thumb.jpg" alt="Villa Harmony">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Villa Harmony</h3>
-                            <p>Уютная вилла с частным бассейном</p>
-                        </div>
-                    </a>
-
-                    <!-- Nature 2 -->
-                    <a href="img/gallery/nature-2-large.jpg" class="gallery-item" data-aos="fade-up" data-category="nature" data-sub-html="<h4>Лесные тропы</h4><p>Прогулки по нашему заповедному лесу</p>">
-                        <img src="img/gallery/nature-2-thumb.jpg" alt="Лесные тропы">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Лесные тропы</h3>
-                            <p>Прогулки по нашему заповедному лесу</p>
-                        </div>
-                    </a>
-
-                    <!-- SPA 2 -->
-                    <a href="img/gallery/spa-2-large.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="100" data-category="spa" data-sub-html="<h4>Русская баня</h4><p>Традиционная баня на дровах</p>">
-                        <img src="img/gallery/spa-2-thumb.jpg" alt="Русская баня">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Русская баня</h3>
-                            <p>Традиционная баня на дровах</p>
-                        </div>
-                    </a>
-
-                    <!-- Restaurant 2 -->
-                    <a href="img/gallery/restaurant-2-large.jpg" class="gallery-item" data-aos="fade-up" data-aos-delay="200" data-category="restaurant" data-sub-html="<h4>Летняя терраса</h4><p>Ужин с видом на озеро</p>">
-                        <img src="img/gallery/restaurant-2-thumb.jpg" alt="Летняя терраса">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Летняя терраса</h3>
-                            <p>Ужин с видом на озеро</p>
-                        </div>
-                    </a>
-
-                    <!-- Activities 2 -->
-                    <a href="img/gallery/activities-2-large.jpg" class="gallery-item" data-aos="fade-up" data-category="activities" data-sub-html="<h4>Рыбалка</h4><p>Рыбалка с профессиональным гидом</p>">
-                        <img src="img/gallery/activities-2-thumb.jpg" alt="Рыбалка">
-                        <div class="gallery-overlay">
-                            <div class="zoom-icon">
-                                <svg width="24" height="24" viewBox="0 0 24 24">
-                                    <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                                </svg>
-                            </div>
-                            <h3>Рыбалка</h3>
-                            <p>Рыбалка с профессиональным гидом</p>
-                        </div>
-                    </a>
-                </div>
+    <!-- Nature Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__title-sub">Окружающая среда</span>
+                <span class="section__title-main">Природа</span>
+            </h2>
+            <div class="gallery-grid" id="lightgallery-nature">
+                <a href="img/IMAGE 2025-08-25 21:41:08.jpg" class="gallery-item wide">
+                    <img src="img/IMAGE 2025-08-25 21:41:08.jpg" alt="Природа 1">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:41:59.jpg" class="gallery-item tall">
+                    <img src="img/IMAGE 2025-08-25 21:41:59.jpg" alt="Природа 2">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:42:34.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 21:42:34.jpg" alt="Природа 3">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:42:52.jpg" class="gallery-item tall">
+                    <img src="img/IMAGE 2025-08-25 21:42:52.jpg" alt="Природа 4">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:43:11.jpg" class="gallery-item wide">
+                    <img src="img/IMAGE 2025-08-25 21:43:11.jpg" alt="Природа 5">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:43:35.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 21:43:35.jpg" alt="Природа 6">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:44:09.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 21:44:09.jpg" alt="Природа 6">
+                </a>
+                <a href="img/IMAGE 2025-08-25 21:44:34.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 21:44:34.jpg" alt="Природа 6">
+                </a>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__title-sub">Развлечения</span>
+                <span class="section__title-main">Активности</span>
+            </h2>
+            <div class="gallery-grid" id="lightgallery-activities">
+                <a href="img/IMAGE 2025-08-25 21:45:41.jpg" class="gallery-item tall">
+                    <img src="img/activity5.jpg" alt="Активность 1">
+                    <div class="gallery-item__caption">Активность 1</div>
+                </a>
+                <a href="img/activity2.jpg" class="gallery-item wide">
+                    <img src="img/activity2.jpg" alt="Активность 2">
+                    <div class="gallery-item__caption">Активность 2</div>
+                </a>
+                <a href="img/activity3.jpg" class="gallery-item">
+                    <img src="img/activity7.jpg" alt="Активность 3">
+                    <div class="gallery-item__caption">Активность 3</div>
+                </a>
+                <a href="img/activity4.jpg" class="gallery-item wide">
+                    <img src="img/activity3.jpg" alt="Активность 4">
+                    <div class="gallery-item__caption">Активность 4</div>
+                </a>
+                <a href="img/activity5.jpg" class="gallery-item tall">
+                    <img src="img/activity8.jpg" alt="Активность 5">
+                    <div class="gallery-item__caption">Активность 5</div>
+                </a>
+                <a href="img/activity6.jpg" class="gallery-item">
+                    <img src="img/activity6.jpg" alt="Активность 6">
+                    <div class="gallery-item__caption">Активность 6</div>
+                </a>
+                <a href="img/activity6.jpg" class="gallery-item">
+                    <img src="img/activity4.jpg" alt="Активность 6">
+                    <div class="gallery-item__caption">Активность 7</div>
+                </a>
+                <a href="img/activity6.jpg" class="gallery-item">
+                    <img src="img/IMAGE 2025-08-25 21:45:41.jpg" alt="Активность 6">
+                    <div class="gallery-item__caption">Активность 8</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section__title">
+                <span class="section__title-sub">Дополнительно</span>
+                <span class="section__title-main">Другое</span>
+            </h2>
+            <div class="gallery-grid" id="lightgallery-other">
+                <a href="img/other1.jpg" class="gallery-item wide">
+                    <img src="img/other1.jpg" alt="Другое 1">
+                    <div class="gallery-item__caption">Другое 1</div>
+                </a>
+                <a href="img/other2.jpg" class="gallery-item tall">
+                    <img src="img/other2.jpg" alt="Другое 2">
+                    <div class="gallery-item__caption">Другое 2</div>
+                </a>
+                <a href="img/other3.jpg" class="gallery-item">
+                    <img src="img/other3.jpg" alt="Другое 3">
+                    <div class="gallery-item__caption">Другое 3</div>
+                </a>
+                <a href="img/other4.jpg" class="gallery-item">
+                    <img src="img/other4.jpg" alt="Другое 3">
+                    <div class="gallery-item__caption">Другое 3</div>
+                </a>
+                <a href="img/other5.jpg" class="gallery-item">
+                    <img src="img/other5.jpg" alt="Другое 3">
+                    <div class="gallery-item__caption">Другое 3</div>
+                </a>
+                <a href="img/other6.jpg" class="gallery-item">
+                    <img src="img/other6.jpg" alt="Другое 3">
+                    <div class="gallery-item__caption">Другое 3</div>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
-                
                 <div class="footer__col">
                     <a href="index.html" class="footer__logo">Сибиряк</a>
-                    <p class="footer__text">База отдыха в сосновом бору на берегу реки Иртыш для тех, кто ценит природу и комфорт.</p>
+                    <p class="footer__text">База отдыха в сосновом бору для тех, кто ценит природу и комфорт.</p>
                 </div>
 
                 <div class="footer__col">
@@ -779,7 +645,7 @@
                         </a>
                     </div>
                 </div>
-                
+
                 <div class="footer__col">
                     <h3 class="footer__title">Контакты</h3>
                     <address class="footer__address">
@@ -789,7 +655,7 @@
                     <a href="tel:+79083103616" class="footer__phone">8 908 310 36 16</a>
                     <a href="mailto:matvey.matveev.87@list.ru" class="footer__email">matvey.matveev.87@list.ru</a>
                 </div>
-                
+
                 <div class="footer__col">
                     <h3 class="footer__title">Мы в соцсетях</h3>
                     <div class="footer__social">
@@ -799,9 +665,9 @@
                             </svg>
                             ВКонтакте
                         </a>
-                        <a href="https://wa.me/79083103616" target="_blank" rel="noopener noreferrer" class="footer__social-link">
+                        <a href="https://wa.me/+79083103616" target="_blank" rel="noopener noreferrer" class="footer__social-link">
                             <svg width="20" height="20" viewBox="0 0 24 24" style="margin-right: 8px; vertical-align: middle;">
-                                <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27z"/>
+                                <path fill="currentColor" d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.264 8.264 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.183 8.183 0 0 1 2.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43s.17-.25.25-.41c.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.10.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.07-.1-.23-.16-.48-.27z"/>
                             </svg>
                             WhatsApp
                         </a>
@@ -814,7 +680,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="footer__bottom">
                 <p class="footer__copyright">© 2025 Дом отдыха Сибиряк. Все права защищены.</p>
                 <a href="#" class="footer__policy">Политика конфиденциальности</a>
@@ -822,52 +688,70 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lg-video/2.0.0/lg-video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/video/lg-video.min.js"></script>
     <script src="js/app.js"></script>
-    
     <script>
-        // Инициализация AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
+        // Initialize LightGallery for each section
+        document.addEventListener('DOMContentLoaded', () => {
+            const galleries = ['rooms', 'nature', 'activities', 'other'];
+            galleries.forEach(id => {
+                const galleryElement = document.getElementById(`lightgallery-${id}`);
+                if (galleryElement) {
+                    try {
+                        lightGallery(galleryElement, {
+                            thumbnail: true,
+                            animateThumb: false,
+                            showThumbByDefault: false,
+                            download: false,
+                            speed: 500,
+                            plugins: [window.lgZoom, window.lgThumbnail, window.lgVideo],
+                            showCloseIcon: true,
+                            closeOnTap: true,
+                            escKey: true,
+                            slideShowAutoplay: false,
+                            zoom: true,
+                            scale: 1,
+                            rotate: false,
+                            flipHorizontal: false,
+                            flipVertical: false,
+                            enableSwipe: true,
+                            enableDrag: true,
+                            mode: 'lg-slide',
+                            addClass: 'lg-custom-gallery',
+                            mobileSettings: {
+                                controls: true,
+                                showCloseIcon: true,
+                                download: false
+                            }
+                        });
+                        console.log(`LightGallery initialized for ${id}`);
+                    } catch (error) {
+                        console.error(`Failed to initialize LightGallery for ${id}:`, error);
+                    }
+                } else {
+                    console.error(`Gallery element with ID lightgallery-${id} not found`);
+                }
+            });
         });
 
-        // Инициализация галереи
-        document.addEventListener('DOMContentLoaded', () => {
-            const gallery = lightGallery(document.getElementById('lightgallery'), {
-                selector: '.gallery-item',
-                download: false,
-                counter: false,
-                videojs: true
-            });
+        // Burger menu toggle
+        const burger = document.querySelector('.burger');
+        const nav = document.querySelector('.nav');
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
 
-            // Фильтрация галереи
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Удаляем активный класс у всех кнопок
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Добавляем активный класс текущей кнопке
-                    this.classList.add('active');
-                    
-                    const filterValue = this.getAttribute('data-filter');
-                    const galleryItems = document.querySelectorAll('.gallery-item');
-                    
-                    galleryItems.forEach(item => {
-                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
+        // Ensure AOS doesn't interfere with LightGallery
+        AOS.init({
+            disable: 'mobile',
+            once: true
         });
     </script>
 </body>
